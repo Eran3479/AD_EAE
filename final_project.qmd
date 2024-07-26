@@ -1,0 +1,25 @@
+---
+title: "Final_project"
+format: revealjs
+editor: visual
+---
+
+## Determining Factors in MOOCs Completion Rates: Application Test in Energy Sustainability Courses
+
+**Introduction:**This study explores factors affecting Massive Open Online Course (MOOC) completion rates, specifically in energy sustainability courses. It examines how personal, family, social, labor, and instructional design factors influence engagement and course completion.
+
+**Methods:** Data from 8,737 participants in 12 MOOCs (2017-2018) were analyzed. Surveys assessed participants’ motivations, backgrounds, and interactions to identify key factors influencing enrollment and completion.
+
+**Results:** Personal, family, social, labor, and instructional design factors significantly impact MOOC engagement and completion. "Professional development" was most influential, particularly for technical graduates. Effective instructional design, including interactive elements and course relevance, was vital for younger participants, while traditional xMOOC design correlated with lower completion rates.
+
+**Conclusions:** Improving MOOC completion rates hinges on effective instructional design, strong personal motivation, and professional relevance. These insights are essential for educators and course designers seeking to boost MOOC effectiveness and engagement.
+
+## Massive Open Online Course Completion Rates Revisited: Assessment, Length and Attrition
+
+**Introduction:** This study updates Jordan's 2014 work by analyzing enrollment and completion data from 221 MOOCs to identify factors affecting completion rates amidst changing enrollment trends.
+
+**Methods:** The analysis uses multiple regression to evaluate how course length, start date, and assessment type impact completion rates, with data showing rates from 0.7% to 52.1%.
+
+**Results:** Longer courses and those using peer grading are associated with lower completion rates. Course length and early engagement are significant factors, while university ranking and total enrollment are not.
+
+**Conclusions:** Course length and assessment type significantly affect MOOC completion rates. Further research is needed due to data limitations and evolving trends.
