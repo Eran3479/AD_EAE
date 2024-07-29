@@ -30,6 +30,8 @@ editor: visual
 
 ## later put in methods
 
+## Loading the necessary libraries
+
 ```{r, results='hide', message=FALSE}
 library(dplyr)
 library(tidyr)
@@ -45,6 +47,8 @@ data = read.csv("data.csv")
 # Convert to tibble
 data = as_tibble(data)
 ```
+
+## Inspecting and cleaning the data
 
 ```{r}
 # Insepecting the data
@@ -62,13 +66,15 @@ sapply(data, function(x) sum(is.na(x)))
 data = select(data, -UserID)
 ```
 
+## Inspecting and cleaning the data
+
 ```{r}
 # Check for duplicates
 duplicates = data[duplicated(data), ]
 duplicates 
+# We can see that there are 877 rows of duplicates
 ```
 
-**We can see that there are 877 rows of duplicates**
 
 ```{r}
 #Removing duplicates
