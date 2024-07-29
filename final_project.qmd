@@ -4,6 +4,83 @@ format: revealjs
 editor: visual
 ---
 
+## Intro
+
+**text here**
+
+## Literature review
+
+**text here**
+
+## Hypothesis
+
+**text here**
+
+## Methods: which tools did you use and how you used them
+
+**code, pics, text here**
+
+## Main results
+
+**code, pics, text here**
+
+## Conclusions
+
+**text here**
+
+## later put in methods
+
+```{r, results='hide', message=FALSE}
+library(dplyr)
+library(tidyr)
+library(tidyverse)
+```
+
+```{r}
+# Reading the file into R
+data = read.csv("data.csv")
+```
+
+```{r}
+# Convert to tibble
+data = as_tibble(data)
+```
+
+```{r}
+# Insepecting the data
+summary(data)
+```
+
+```{r}
+#Check for NA's
+sapply(data, function(x) sum(is.na(x)))
+# NO NA's
+```
+
+```{r}
+# Remove UserID column
+data = select(data, -UserID)
+```
+
+```{r}
+# Check for duplicates
+duplicates = data[duplicated(data), ]
+duplicates 
+```
+
+**We can see that there are 877 rows of duplicates**
+
+```{r}
+#Removing duplicates
+data = data |>
+  distinct()
+```
+
+```{r}
+#Check to see if the duplicates were removed, should equal to 0
+sum(duplicated(data)) # 0 
+```
+
 ## Determining Factors in MOOCs Completion Rates: Application Test in Energy Sustainability Courses
 
 **Introduction:**This study explores factors affecting Massive Open Online Course (MOOC) completion rates, specifically in energy sustainability courses. It examines how personal, family, social, labor, and instructional design factors influence engagement and course completion.
