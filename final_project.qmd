@@ -75,7 +75,6 @@ duplicates
 # We can see that there are 877 rows of duplicates
 ```
 
-
 ```{r}
 #Removing duplicates
 data = data |>
@@ -85,6 +84,14 @@ data = data |>
 ```{r}
 #Check to see if the duplicates were removed, should equal to 0
 sum(duplicated(data)) # 0 
+```
+
+```{r}
+# count how many students from each category
+category = data |>
+  group_by(CourseCategory) |>
+  summarise(Count = n())
+category
 ```
 
 ## Determining Factors in MOOCs Completion Rates: Application Test in Energy Sustainability Courses
