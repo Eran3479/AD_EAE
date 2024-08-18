@@ -1,0 +1,128 @@
+---
+title: "Final_project"
+format: revealjs
+editor: visual
+number-sections: true
+---
+
+# Legend {data-background-color="#fff"}
+
+- [Intro](#Intro)
+- [Literature review](#Literature review)
+
+# Intro{#Intro}
+
+**text here**
+
+## more intro 
+ **text** 
+ 
+### even more info 
+**text**
+
+
+# Literature review
+
+**text here**
+
+# Hypothesis
+
+**text here**
+
+# Methods: which tools did you use and how you used them
+
+## cleaning and tyding the data
+```{r}
+
+```
+
+
+## Conclusions
+
+**text here**
+
+## later put in methods
+
+## Loading the necessary libraries
+
+```{r, results='hide', message=FALSE}
+library(dplyr)
+library(tidyr)
+library(tidyverse)
+```
+
+```{r}
+# Reading the file into R
+data = read.csv("data.csv")
+```
+
+```{r}
+# Convert to tibble
+data = as_tibble(data)
+```
+
+## Inspecting and cleaning the data
+
+```{r}
+# Insepecting the data
+summary(data)
+```
+
+```{r}
+#Check for NA's
+sapply(data, function(x) sum(is.na(x)))
+# NO NA's
+```
+
+```{r}
+# Remove UserID column
+data = select(data, -UserID)
+```
+
+## Inspecting and cleaning the data
+
+```{r}
+# Check for duplicates
+duplicates = data[duplicated(data), ]
+duplicates 
+# We can see that there are 877 rows of duplicates
+```
+
+```{r}
+#Removing duplicates
+data = data |>
+  distinct()
+```
+
+```{r}
+#Check to see if the duplicates were removed, should equal to 0
+sum(duplicated(data)) # 0 
+```
+
+```{r}
+# count how many students from each category
+category = data |>
+  group_by(CourseCategory) |>
+  summarise(Count = n())
+category
+```
+
+## Determining Factors in MOOCs Completion Rates: Application Test in Energy Sustainability Courses
+
+**Introduction:**This study explores factors affecting Massive Open Online Course (MOOC) completion rates, specifically in energy sustainability courses. It examines how personal, family, social, labor, and instructional design factors influence engagement and course completion.
+
+**Methods:** Data from 8,737 participants in 12 MOOCs (2017-2018) were analyzed. Surveys assessed participants’ motivations, backgrounds, and interactions to identify key factors influencing enrollment and completion.
+
+**Results:** Personal, family, social, labor, and instructional design factors significantly impact MOOC engagement and completion. "Professional development" was most influential, particularly for technical graduates. Effective instructional design, including interactive elements and course relevance, was vital for younger participants, while traditional xMOOC design correlated with lower completion rates.
+
+**Conclusions:** Improving MOOC completion rates hinges on effective instructional design, strong personal motivation, and professional relevance. These insights are essential for educators and course designers seeking to boost MOOC effectiveness and engagement.
+
+## Massive Open Online Course Completion Rates Revisited: Assessment, Length and Attrition
+
+**Introduction:** This study updates Jordan's 2014 work by analyzing enrollment and completion data from 221 MOOCs to identify factors affecting completion rates amidst changing enrollment trends.
+
+**Methods:** The analysis uses multiple regression to evaluate how course length, start date, and assessment type impact completion rates, with data showing rates from 0.7% to 52.1%.
+
+**Results:** Longer courses and those using peer grading are associated with lower completion rates. Course length and early engagement are significant factors, while university ranking and total enrollment are not.
+
+**Conclusions:** Course length and assessment type significantly affect MOOC completion rates. Further research is needed due to data limitations and evolving trends.
