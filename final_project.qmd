@@ -1,16 +1,21 @@
 ---
 title: "Final_project"
-format: 
+format:
   revealjs:
-   css: styles.css
+    smaller: true
+    scrollable: true
+    transition: slide
+    transition-speed: slow
 editor: visual
 number-sections: true
 toc: true
+slide-number: true
+incremental: true
 ---
 
 # Intro
 
-**text here** 
+**text here**
 
 # Literature review
 
@@ -34,7 +39,6 @@ toc: true
 
 **Conclusions:** Course length and assessment type significantly affect MOOC completion rates. Further research is needed due to data limitations and evolving trends.
 
-
 **text here**
 
 # Hypothesis
@@ -42,66 +46,67 @@ toc: true
 **text here**
 
 # Methods
+
 **In this project, we undertook a thorough analysis by first cleaning the data to ensure accuracy. We then performed correlation tests to identify relationships between variables, and checked for normal distribution using the Shapiro-Wilk test. Our analysis included running ANOVA to compare group means and using the Friedman test as a non-parametric alternative. We also calculated various means to summarize the data and created graphs to visualize the connections between different variables. This approach allowed us to gain a clear understanding of the relationships within the data.**
 
-##lists of statistical tests
-**1.
 
 ## Loading the necessary libraries
 
-```{r, results='hide'}
+```{r, echo=TRUE, results='hide'}
 library(dplyr)
 library(tidyr)
 library(tidyverse)
+library(reshape2)
+library(MASS)
 ```
 
-```{r}
+```{r, echo=TRUE, results='hide'}
 # Reading the file into R
 data = read.csv("data.csv")
 ```
 
-```{r}
+```{r, echo=TRUE, results='hide'}
 # Convert to tibble
 data = as_tibble(data)
 ```
 
 ## Inspecting and cleaning the data
 
-```{r}
+```{r, echo=TRUE, results='hide'}
 # Insepecting the data
 summary(data)
 ```
 
-```{r}
+```{r, echo=TRUE, results='hide'}
 #Check for NA's
 sapply(data, function(x) sum(is.na(x)))
 # NO NA's
 ```
 
-```{r}
+```{r, echo=TRUE, results='hide'}
 # Remove UserID column
-data = select(data, -UserID)
+data =dplyr::select(data, -UserID)
 ```
 
-```{r}
+```{r, echo=TRUE, results='hide'}
 # Check for duplicates
 duplicates = data[duplicated(data), ]
 duplicates 
 # We can see that there are 877 rows of duplicates
 ```
 
-```{r}
+```{r, echo=TRUE, results='hide'}
 #Removing duplicates
 data = data |>
   distinct()
 ```
 
-```{r}
+```{r, echo=TRUE, results='hide'}
 #Check to see if the duplicates were removed, should equal to 0
 sum(duplicated(data)) # 0 
 ```
 
-```{r}
+```{r, echo=TRUE, results='hide'}
 # count how many students from each category
 category = data |>
   group_by(CourseCategory) |>
@@ -111,7 +116,7 @@ category
 
 ## sampling 1500 from each category and normalzing the data
 
-```{r}
+```{r, echo=TRUE, results='hide'}
 set.seed(123)
 
 data <- data %>%
@@ -135,18 +140,18 @@ data <- data %>%
   mutate(across(where(is.numeric) & !all_of(c("DeviceType")), round, 3))
 data
 ```
-##shapiro test 
-**testing to see if the data is normally distributing**
 
-##anova 
+## shapiro test **testing to see if the data is normally distributing**
 
-##fridman 
+## anova
 
-##correlation
+## fridman
+
+## correlation
 
 ## Mean by category
 
-```{r, results='hide', echo=TRUE}
+```{r, echo=TRUE, results='hide'}
 data_health = data|>
   filter(CourseCategory == 'Health')
 
@@ -196,116 +201,272 @@ ggplot(completion_rates_per, aes(x = course, y = completion_rate, fill = course)
   theme_minimal() +
   theme(legend.position = "none")
 ```
-## mean by variables 
 
-##mean by device type 
+## mean by variables
 
-##plotting the data
+```{r, echo=TRUE, results='hide'}
+mean_data <- data %>%
+  dplyr:: select (-DeviceType, -CourseCompletion) %>%
+  group_by(CourseCategory) %>%
+  summarise(across(everything(), mean, na.rm = TRUE))
 
-#Results
+mean_data
+# Pivot data for easier plotting
+mean_data_long <- mean_data %>%
+  pivot_longer(-CourseCategory, names_to = "Variable", values_to = "Mean")
+
+ggplot(mean_data_long, aes(x = CourseCategory, y = Mean, fill = CourseCategory)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = round(Mean, 2)), vjust = -0.5, size = 3) +  # Add mean values on top of the bars
+  facet_wrap(~ Variable, scales = "free_y") +
+  scale_y_continuous(limits = c(0, 1)) +
+  theme_minimal() +
+  labs(title = "Mean Comparison Across Categories for Each Variable", 
+       x = "Course Category", 
+       y = "Mean Value") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+## mean by device type
+
+```{r, echo=TRUE, results='hide'}
+device_data <- data %>%
+      group_by(CourseCategory, DeviceType) %>%
+      summarise(UserCount = n()) %>%
+      ungroup()
+    
+    # Calculate the percentage of users for each device type within each course category
+    device_data <- device_data %>%
+      group_by(CourseCategory) %>%
+      mutate(Percentage = (UserCount / sum(UserCount)) * 100) %>%
+      ungroup()
+    
+    # Create the faceted bar graph
+    ggplot(device_data, aes(x = as.factor(DeviceType), y = Percentage, fill = as.factor(DeviceType))) +
+      geom_bar(stat = "identity") +
+      geom_text(aes(label = paste0(round(Percentage, 1), "%")), vjust = -0.5, size = 3) +  # Add percentage labels on top of bars
+      facet_wrap(~ CourseCategory) +
+      scale_y_continuous(limits = c(0, 100), labels = scales::percent_format(scale = 1)) +  # Set y-axis limits between 0 and 100
+      theme_minimal() +
+      labs(title = "Percentage of Users by Device Type Across Course Categories", 
+           x = "Device Type", 
+           y = "Percentage of Users") +
+      theme(axis.text.x = element_text(angle = 0, hjust = 1)) +
+      scale_fill_manual(values = c("0" = "#1f77b4", "1" = "#ff7f0e"), 
+                        name = "Device Type",
+                        labels = c("Device 0", "Device 1"))
+```
 
 ## 
 
-**code, pics, text here** \>\>\>\>\>\>\> 19609bc9b7f76d53fa40bfd18e1666f5365f5327
+##plotting: calculating density to visualise the results
 
-# Conclusions
-
-**text here**
-
-# later put in methods
-
-# Loading the necessary libraries
-
-```{r, results='hide', message=FALSE}
-library(dplyr)
-library(tidyr)
-library(tidyverse)
-```
-
-```{r}
-# Reading the file into R
-data = read.csv("data.csv")
-```
-
-```{r}
-# Convert to tibble
-data = as_tibble(data)
-```
-
-```{r}
-# Insepecting the data
-summary(data)
-```
-
-```{r}
-#Check for NA's
-sapply(data, function(x) sum(is.na(x)))
-# NO NA's
-```
-
-```{r}
-# Remove UserID column
-data = select(data, -UserID)
-```
-
-# Inspecting and cleaning the data
-
-```{r}
-# Check for duplicates
-duplicates = data[duplicated(data), ]
-duplicates 
-# We can see that there are 877 rows of duplicates
-```
-
-```{r}
-#Removing duplicates
-data = data |>
-  distinct()
-```
-
-```{r}
-#Check to see if the duplicates were removed, should equal to 0
-sum(duplicated(data)) # 0 
-```
-
-```{r}
-# count how many students from each category
-category = data |>
-  group_by(CourseCategory) |>
-  summarise(Count = n())
-category
-```
-
-## sampling 1500 from each category and normalzing the data
-
-```{r}
-set.seed(123)
-
-data <- data %>%
-  group_by(CourseCategory) %>%
-  sample_n(size = 1500, replace = TRUE) %>%
-  ungroup()
-
-
-normalize <- function(x) {
-  return ((x - min(x)) / (max(x) - min(x)))
+```{r, echo=TRUE, results='hide'}
+calculate_density <- function(x, y) {
+  dens <- kde2d(x, y, n = 100)
+  ix <- findInterval(x, dens$x)
+  iy <- findInterval(y, dens$y)
+  return(dens$z[cbind(ix, iy)])
 }
-
-data = data |>
-  mutate(TimeSpentOnCourse = normalize(TimeSpentOnCourse),
-         NumberOfVideosWatched = normalize(NumberOfVideosWatched),
-         NumberOfQuizzesTaken = normalize(NumberOfQuizzesTaken),
-         QuizScores = normalize(QuizScores),
-         CompletionRate = normalize(CompletionRate))
-
-data <- data %>%
-  mutate(across(where(is.numeric) & !all_of(c("DeviceType")), round, 3))
-data
 ```
 
-## Mean by category
+## plotting: time spent on course compare to completaion rate
 
-```{r, eval=FALSE, include=FALSE}
+```{r, echo=TRUE, results='hide'}
+# Calculate densities for not completed and completed data
+notcompleted1 <- data %>%
+  filter(CourseCompletion == '0') %>%
+  mutate(density = calculate_density(TimeSpentOnCourse, CompletionRate))
+
+completed1 <- data %>%
+  filter(CourseCompletion == '1') %>%
+  mutate(density = calculate_density(TimeSpentOnCourse, CompletionRate))
+
+
+highdensity_combined1 <- bind_rows(
+  notcompleted1 %>% mutate(Status = "Not Completed"),
+  completed1 %>% mutate(Status = "Completed")
+) %>%
+  group_by(CourseCategory, Status) %>%
+  filter(density >= quantile(density, 0.8)) %>%
+  dplyr:: select(CourseCategory, CourseCompletion, TimeSpentOnCourse, CompletionRate, density, Status)
+
+
+highdensity_combined1
+
+
+
+# Plot the most dense areas
+density_1 = ggplot(highdensity_combined1, aes(x = TimeSpentOnCourse, y = CompletionRate, color = Status)) +
+  geom_point(alpha = 0.6) +
+  facet_wrap(~ CourseCategory, ncol = 3) +
+  scale_color_manual(values = c("Completed" = "blue", "Not Completed" = "red")) +
+  labs(title = "High-Density Areas by Course Category",
+       x = "Time Spent on Course",
+       y = "Completion Rate",
+       color = "Completion Status") +
+  theme_minimal()
+density_1
+```
+
+## plotting: quiz score compare to completion rate
+
+```{r, echo=TRUE, results='hide'}
+notcompleted3 <- data %>%
+  filter(CourseCompletion == '0') %>%
+  mutate(density = calculate_density(QuizScores, CompletionRate))
+
+completed3 <- data %>%
+  filter(CourseCompletion == '1') %>%
+  mutate(density = calculate_density(QuizScores, CompletionRate))
+
+
+highdensity_combined3 <- bind_rows(
+  notcompleted3 %>% mutate(Status = "Not Completed"),
+  completed3 %>% mutate(Status = "Completed")
+) %>%
+  group_by(CourseCategory, Status) %>%
+  filter(density >= quantile(density, 0.8)) %>%
+  dplyr:: select(CourseCategory, CourseCompletion, QuizScores, CompletionRate, density, Status)
+
+highdensity_combined3
+
+
+
+# Plot the most dense areas
+density_3 = ggplot(highdensity_combined3, aes(x = QuizScores, y = CompletionRate, color = Status)) +
+  geom_point(alpha = 0.6) +
+  facet_wrap(~ CourseCategory, ncol = 3) +
+  scale_color_manual(values = c("Completed" = "blue", "Not Completed" = "red")) +
+  labs(title = "High-Density Areas by Course Category",
+       x = "Quiz scores",
+       y = "Completion Rate",
+       color = "Completion Status") +
+  theme_minimal()
+density_3
+```
+
+## plotting: Number of quiz taken compare to quiz score
+
+```{r, echo=TRUE, results='hide'}
+notcompleted5 <- data %>%
+  filter(CourseCompletion == '0') %>%
+  mutate(density = calculate_density(NumberOfQuizzesTaken, QuizScores))
+
+completed5 <- data %>%
+  filter(CourseCompletion == '1') %>%
+  mutate(density = calculate_density(NumberOfQuizzesTaken, QuizScores))
+
+
+highdensity_combined5 <- bind_rows(
+  notcompleted5 %>% mutate(Status = "Not Completed"),
+  completed5 %>% mutate(Status = "Completed")
+) %>%
+  group_by(CourseCategory, Status) %>%
+  filter(density >= quantile(density, 0.8)) %>%
+  dplyr:: select(CourseCategory, CourseCompletion ,NumberOfQuizzesTaken , QuizScores, density, Status)
+
+highdensity_combined5
+
+
+
+# Plot the most dense areas
+density_5 = ggplot(highdensity_combined5, aes(x = NumberOfQuizzesTaken, y = QuizScores, color = Status)) +
+  geom_point(alpha = 0.6) +
+  facet_wrap(~ CourseCategory, ncol = 3) +
+  scale_color_manual(values = c("Completed" = "blue", "Not Completed" = "red")) +
+  labs(title = "High-Density Areas by Course Category",
+       x = "Number Of Quizzes Taken",
+       y = "Quizzes Scores",
+       color = "Completion Status") +
+  theme_minimal() +
+  theme(
+    panel.spacing = unit(1, "lines"),  # Add space between panels
+    panel.border = element_rect(color = "black", fill = NA, size = 1)  # Add border around each panel
+  )
+density_5
+```
+
+## plotting: Time spent on course compare to quiz score
+
+```{r, echo=TRUE, results='hide'}
+notcompleted6 <- data %>%
+  filter(CourseCompletion == '0') %>%
+  mutate(density = calculate_density(TimeSpentOnCourse, QuizScores))
+
+completed6 <- data %>%
+  filter(CourseCompletion == '1') %>%
+  mutate(density = calculate_density(TimeSpentOnCourse, QuizScores))
+
+
+highdensity_combined6 <- bind_rows(
+  notcompleted6 %>% mutate(Status = "Not Completed"),
+  completed6 %>% mutate(Status = "Completed")
+) %>%
+  group_by(CourseCategory, Status) %>%
+  filter(density >= quantile(density, 0.8)) %>%
+  dplyr:: select(CourseCategory, CourseCompletion ,TimeSpentOnCourse , QuizScores, density, Status)
+
+highdensity_combined6
+
+
+
+# Plot the most dense areas
+density_6 = ggplot(highdensity_combined6, aes(x = TimeSpentOnCourse , y = QuizScores, color = Status)) +
+  geom_point(alpha = 0.6) +
+  facet_wrap(~ CourseCategory, ncol = 3) +
+  scale_color_manual(values = c("Completed" = "blue", "Not Completed" = "red")) +
+  labs(title = "High-Density Areas by Course Category",
+       x = "TimeSpentOnCourse",
+       y = "Quizes scores",
+       color = "Completion Status") +
+  theme_minimal()
+density_6
+```
+
+## chi test to test the connection between device type and course completion 
+
+
+```{r, echo=TRUE, results='hide'}
+chi_test_results <- data %>%
+  group_by(CourseCategory) %>%
+  summarise(
+    Chi_Square_Test = list(chisq.test(table(DeviceType, CourseCompletion)))
+  )
+
+# Display the p-values for each course category
+results =chi_test_results %>%
+  mutate(p_value = sapply(Chi_Square_Test, function(x) x$p.value)) %>%
+  dplyr:: select(CourseCategory, p_value)
+results
+
+```
+
+```{r, echo=TRUE, results='hide'}
+ggplot(results, aes(x = CourseCategory, y = p_value)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  geom_hline(yintercept = 0.05, color = "red", linetype = "dashed") +  # Red line at 0.05
+  geom_text(aes(label = round(p_value, 3)), vjust = 0) +
+  theme_minimal() +
+  labs(title = "Chi-Square Test p-values by Course Category",
+       x = "Course Category",
+       y = "p-value") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+##
+
+
+
+# Results
+
+## mean by category
+**the bar graph shows the percentage of the student that completed the course by their course category.**
+
+in all course category the completing percentage is bellow 50 %, which is low.
+the course with the highest percentage is Business and the lowest is Health.
+
+```{r, echo=FALSE}
 data_health = data|>
   filter(CourseCategory == 'Health')
 
@@ -351,8 +512,13 @@ ggplot(completion_rates_per, aes(x = course, y = completion_rate, fill = course)
   scale_y_continuous(labels = scales::percent_format(scale = 1), limits = c(0, 100)) +
   labs(title = "Mean of Course Completion by Category",
        x = "Course Category",
-       y = "Completion Rate (%)") +
+       y = "completion of course (pass/not pass) (%)") +
   theme_minimal() +
   theme(legend.position = "none")
 ```
 
+**code, pics, text here** \>\>\>\>\>\>\> 19609bc9b7f76d53fa40bfd18e1666f5365f5327
+
+# Conclusions
+
+**text here**
