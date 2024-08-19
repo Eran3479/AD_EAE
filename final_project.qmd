@@ -1,41 +1,92 @@
 ---
 title: "Final_project"
-format: revealjs
+format: 
+  revealjs:
+   css: styles.css
 editor: visual
 number-sections: true
+toc: true
 ---
-
-# Legend {data-background-color="#fff"}
-
-- [Intro](#Intro)
-- [Literature review](#Literature review)
-
-# Intro{#Intro}
+#  Intro{#intro}
 
 **text here**
 
-## more intro 
- **text** 
- 
-### even more info 
-**text**
-
-
-# Literature review
+# Literature review{#Literature review}
 
 **text here**
 
-# Hypothesis
+# Hypothesis{#Hypothesis}
 
 **text here**
 
-# Methods: which tools did you use and how you used them
+# Methods{#Methods}
 
-## cleaning and tyding the data
-```{r}
+## Loading the necessary libraries
 
+```{r, results='hide', message=FALSE}
+library(dplyr)
+library(tidyr)
+library(tidyverse)
 ```
 
+```{r}
+# Reading the file into R
+data = read.csv("data.csv")
+```
+
+```{r}
+# Convert to tibble
+data = as_tibble(data)
+```
+
+## Inspecting and cleaning the data 
+
+```{r}
+# Insepecting the data
+summary(data)
+```
+
+```{r}
+#Check for NA's
+sapply(data, function(x) sum(is.na(x)))
+# NO NA's
+```
+
+
+```{r}
+# Remove UserID column
+data = select(data, -UserID)
+```
+
+```{r}
+# Check for duplicates
+duplicates = data[duplicated(data), ]
+duplicates 
+# We can see that there are 877 rows of duplicates
+```
+
+```{r}
+#Removing duplicates
+data = data |>
+  distinct()
+```
+
+```{r}
+#Check to see if the duplicates were removed, should equal to 0
+sum(duplicated(data)) # 0 
+```
+
+```{r}
+# count how many students from each category
+category = data |>
+  group_by(CourseCategory) |>
+  summarise(Count = n())
+category
+```
+## Main results
+
+**code, pics, text here**
+>>>>>>> 19609bc9b7f76d53fa40bfd18e1666f5365f5327
 
 ## Conclusions
 
