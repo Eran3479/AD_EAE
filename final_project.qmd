@@ -8,156 +8,11 @@ number-sections: true
 toc: true
 ---
 
-# Intro {#intro}
+# Intro
 
-**text here**
-**mufasaf**
+**text here** 
 
-# Literature review{#Literature review}
-
-**text here**
-
-# Hypothesis {#Hypothesis}
-
-**text here**
-
-# Methods {#Methods}
-
-## Loading the necessary libraries
-
-```{r, results='hide', message=FALSE}
-library(dplyr)
-library(tidyr)
-library(tidyverse)
-```
-
-```{r}
-# Reading the file into R
-data = read.csv("data.csv")
-```
-
-```{r}
-# Convert to tibble
-data = as_tibble(data)
-```
-
-## Inspecting and cleaning the data
-
-```{r}
-# Insepecting the data
-summary(data)
-```
-
-```{r}
-#Check for NA's
-sapply(data, function(x) sum(is.na(x)))
-# NO NA's
-```
-
-```{r}
-# Remove UserID column
-data = select(data, -UserID)
-```
-
-```{r}
-# Check for duplicates
-duplicates = data[duplicated(data), ]
-duplicates 
-# We can see that there are 877 rows of duplicates
-```
-
-```{r}
-#Removing duplicates
-data = data |>
-  distinct()
-```
-
-```{r}
-#Check to see if the duplicates were removed, should equal to 0
-sum(duplicated(data)) # 0 
-```
-
-```{r}
-# count how many students from each category
-category = data |>
-  group_by(CourseCategory) |>
-  summarise(Count = n())
-category
-```
-
-## Main results
-
-**code, pics, text here** \>\>\>\>\>\>\> 19609bc9b7f76d53fa40bfd18e1666f5365f5327
-
-## Conclusions
-
-**text here**
-
-## later put in methods
-
-## Loading the necessary libraries
-
-```{r, results='hide', message=FALSE}
-library(dplyr)
-library(tidyr)
-library(tidyverse)
-```
-
-```{r}
-# Reading the file into R
-data = read.csv("data.csv")
-```
-
-```{r}
-# Convert to tibble
-data = as_tibble(data)
-```
-
-## Inspecting and cleaning the data
-
-```{r}
-# Insepecting the data
-summary(data)
-```
-
-```{r}
-#Check for NA's
-sapply(data, function(x) sum(is.na(x)))
-# NO NA's
-```
-
-```{r}
-# Remove UserID column
-data = select(data, -UserID)
-```
-
-## Inspecting and cleaning the data
-
-```{r}
-# Check for duplicates
-duplicates = data[duplicated(data), ]
-duplicates 
-# We can see that there are 877 rows of duplicates
-```
-
-```{r}
-#Removing duplicates
-data = data |>
-  distinct()
-```
-
-```{r}
-#Check to see if the duplicates were removed, should equal to 0
-sum(duplicated(data)) # 0 
-```
-
-```{r}
-# count how many students from each category
-category = data |>
-  group_by(CourseCategory) |>
-  summarise(Count = n())
-category
-```
+# Literature review
 
 ## Determining Factors in MOOCs Completion Rates: Application Test in Energy Sustainability Courses
 
@@ -178,3 +33,326 @@ category
 **Results:** Longer courses and those using peer grading are associated with lower completion rates. Course length and early engagement are significant factors, while university ranking and total enrollment are not.
 
 **Conclusions:** Course length and assessment type significantly affect MOOC completion rates. Further research is needed due to data limitations and evolving trends.
+
+
+**text here**
+
+# Hypothesis
+
+**text here**
+
+# Methods
+**In this project, we undertook a thorough analysis by first cleaning the data to ensure accuracy. We then performed correlation tests to identify relationships between variables, and checked for normal distribution using the Shapiro-Wilk test. Our analysis included running ANOVA to compare group means and using the Friedman test as a non-parametric alternative. We also calculated various means to summarize the data and created graphs to visualize the connections between different variables. This approach allowed us to gain a clear understanding of the relationships within the data.**
+
+##lists of statistical tests
+**1.
+
+## Loading the necessary libraries
+
+```{r, results='hide'}
+library(dplyr)
+library(tidyr)
+library(tidyverse)
+```
+
+```{r}
+# Reading the file into R
+data = read.csv("data.csv")
+```
+
+```{r}
+# Convert to tibble
+data = as_tibble(data)
+```
+
+## Inspecting and cleaning the data
+
+```{r}
+# Insepecting the data
+summary(data)
+```
+
+```{r}
+#Check for NA's
+sapply(data, function(x) sum(is.na(x)))
+# NO NA's
+```
+
+```{r}
+# Remove UserID column
+data = select(data, -UserID)
+```
+
+```{r}
+# Check for duplicates
+duplicates = data[duplicated(data), ]
+duplicates 
+# We can see that there are 877 rows of duplicates
+```
+
+```{r}
+#Removing duplicates
+data = data |>
+  distinct()
+```
+
+```{r}
+#Check to see if the duplicates were removed, should equal to 0
+sum(duplicated(data)) # 0 
+```
+
+```{r}
+# count how many students from each category
+category = data |>
+  group_by(CourseCategory) |>
+  summarise(Count = n())
+category
+```
+
+## sampling 1500 from each category and normalzing the data
+
+```{r}
+set.seed(123)
+
+data <- data %>%
+  group_by(CourseCategory) %>%
+  sample_n(size = 1500, replace = TRUE) %>%
+  ungroup()
+
+
+normalize <- function(x) {
+  return ((x - min(x)) / (max(x) - min(x)))
+}
+
+data = data |>
+  mutate(TimeSpentOnCourse = normalize(TimeSpentOnCourse),
+         NumberOfVideosWatched = normalize(NumberOfVideosWatched),
+         NumberOfQuizzesTaken = normalize(NumberOfQuizzesTaken),
+         QuizScores = normalize(QuizScores),
+         CompletionRate = normalize(CompletionRate))
+
+data <- data %>%
+  mutate(across(where(is.numeric) & !all_of(c("DeviceType")), round, 3))
+data
+```
+##shapiro test 
+**testing to see if the data is normally distributing**
+
+##anova 
+
+##fridman 
+
+##correlation
+
+## Mean by category
+
+```{r, results='hide', echo=TRUE}
+data_health = data|>
+  filter(CourseCategory == 'Health')
+
+data_arts = data |>
+  filter(CourseCategory == 'Arts')
+
+data_science <- data %>%
+  filter(CourseCategory== 'Science')
+
+data_Programming <- data %>%
+  filter(CourseCategory == 'Programming')
+
+data_business <- data %>%
+  filter(CourseCategory == 'Business')
+
+
+calculate_mean_completion <- function(data) {
+  mean_completion <- sum(data$CourseCompletion == 1) / 1500
+  return(mean_completion)
+}
+
+# Calculate mean completion rates for each category
+mean_completion_health <- calculate_mean_completion(data_health)
+mean_completion_science <- calculate_mean_completion(data_science)
+mean_completion_Programming <- calculate_mean_completion(data_Programming)
+mean_completion_arts <- calculate_mean_completion(data_arts)
+mean_completion_business <- calculate_mean_completion(data_business)
+
+# Create a table with the results
+completion_rates <- tibble(
+  course = c("Health", "Science", "Programming", "Arts", "Business"),
+  completion_rate = c(mean_completion_health, mean_completion_science, mean_completion_Programming, mean_completion_arts, mean_completion_business)
+)
+
+
+completion_rates_per = completion_rates %>%
+  mutate(completion_rate = completion_rate * 100)
+
+# Create the bar chart
+ggplot(completion_rates_per, aes(x = course, y = completion_rate, fill = course)) +
+  geom_bar(stat = 'identity') +
+  geom_text(aes(label = round(completion_rate, 1)), vjust = -0.5, size = 3.5) +
+  scale_y_continuous(labels = scales::percent_format(scale = 1), limits = c(0, 100)) +
+  labs(title = "Mean of Course Completion by Category",
+       x = "Course Category",
+       y = "completion of course (pass/not pass) (%)") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+## mean by variables 
+
+##mean by device type 
+
+##plotting the data
+
+#Results
+
+## 
+
+**code, pics, text here** \>\>\>\>\>\>\> 19609bc9b7f76d53fa40bfd18e1666f5365f5327
+
+# Conclusions
+
+**text here**
+
+# later put in methods
+
+# Loading the necessary libraries
+
+```{r, results='hide', message=FALSE}
+library(dplyr)
+library(tidyr)
+library(tidyverse)
+```
+
+```{r}
+# Reading the file into R
+data = read.csv("data.csv")
+```
+
+```{r}
+# Convert to tibble
+data = as_tibble(data)
+```
+
+```{r}
+# Insepecting the data
+summary(data)
+```
+
+```{r}
+#Check for NA's
+sapply(data, function(x) sum(is.na(x)))
+# NO NA's
+```
+
+```{r}
+# Remove UserID column
+data = select(data, -UserID)
+```
+
+# Inspecting and cleaning the data
+
+```{r}
+# Check for duplicates
+duplicates = data[duplicated(data), ]
+duplicates 
+# We can see that there are 877 rows of duplicates
+```
+
+```{r}
+#Removing duplicates
+data = data |>
+  distinct()
+```
+
+```{r}
+#Check to see if the duplicates were removed, should equal to 0
+sum(duplicated(data)) # 0 
+```
+
+```{r}
+# count how many students from each category
+category = data |>
+  group_by(CourseCategory) |>
+  summarise(Count = n())
+category
+```
+
+## sampling 1500 from each category and normalzing the data
+
+```{r}
+set.seed(123)
+
+data <- data %>%
+  group_by(CourseCategory) %>%
+  sample_n(size = 1500, replace = TRUE) %>%
+  ungroup()
+
+
+normalize <- function(x) {
+  return ((x - min(x)) / (max(x) - min(x)))
+}
+
+data = data |>
+  mutate(TimeSpentOnCourse = normalize(TimeSpentOnCourse),
+         NumberOfVideosWatched = normalize(NumberOfVideosWatched),
+         NumberOfQuizzesTaken = normalize(NumberOfQuizzesTaken),
+         QuizScores = normalize(QuizScores),
+         CompletionRate = normalize(CompletionRate))
+
+data <- data %>%
+  mutate(across(where(is.numeric) & !all_of(c("DeviceType")), round, 3))
+data
+```
+
+## Mean by category
+
+```{r, eval=FALSE, include=FALSE}
+data_health = data|>
+  filter(CourseCategory == 'Health')
+
+data_arts = data |>
+  filter(CourseCategory == 'Arts')
+
+data_science <- data %>%
+  filter(CourseCategory== 'Science')
+
+data_Programming <- data %>%
+  filter(CourseCategory == 'Programming')
+
+data_business <- data %>%
+  filter(CourseCategory == 'Business')
+
+
+calculate_mean_completion <- function(data) {
+  mean_completion <- sum(data$CourseCompletion == 1) / 1500
+  return(mean_completion)
+}
+
+# Calculate mean completion rates for each category
+mean_completion_health <- calculate_mean_completion(data_health)
+mean_completion_science <- calculate_mean_completion(data_science)
+mean_completion_Programming <- calculate_mean_completion(data_Programming)
+mean_completion_arts <- calculate_mean_completion(data_arts)
+mean_completion_business <- calculate_mean_completion(data_business)
+
+# Create a table with the results
+completion_rates <- tibble(
+  course = c("Health", "Science", "Programming", "Arts", "Business"),
+  completion_rate = c(mean_completion_health, mean_completion_science, mean_completion_Programming, mean_completion_arts, mean_completion_business)
+)
+
+
+completion_rates_per = completion_rates %>%
+  mutate(completion_rate = completion_rate * 100)
+
+# Create the bar chart
+ggplot(completion_rates_per, aes(x = course, y = completion_rate, fill = course)) +
+  geom_bar(stat = 'identity') +
+  geom_text(aes(label = round(completion_rate, 1)), vjust = -0.5, size = 3.5) +
+  scale_y_continuous(labels = scales::percent_format(scale = 1), limits = c(0, 100)) +
+  labs(title = "Mean of Course Completion by Category",
+       x = "Course Category",
+       y = "Completion Rate (%)") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
