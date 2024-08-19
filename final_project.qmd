@@ -7,19 +7,21 @@ editor: visual
 number-sections: true
 toc: true
 ---
-#  Intro{#intro}
+
+# Intro {#intro}
 
 **text here**
+**mufasaf**
 
 # Literature review{#Literature review}
 
 **text here**
 
-# Hypothesis{#Hypothesis}
+# Hypothesis {#Hypothesis}
 
 **text here**
 
-# Methods{#Methods}
+# Methods {#Methods}
 
 ## Loading the necessary libraries
 
@@ -39,7 +41,7 @@ data = read.csv("data.csv")
 data = as_tibble(data)
 ```
 
-## Inspecting and cleaning the data 
+## Inspecting and cleaning the data
 
 ```{r}
 # Insepecting the data
@@ -51,7 +53,6 @@ summary(data)
 sapply(data, function(x) sum(is.na(x)))
 # NO NA's
 ```
-
 
 ```{r}
 # Remove UserID column
@@ -83,10 +84,10 @@ category = data |>
   summarise(Count = n())
 category
 ```
+
 ## Main results
 
-**code, pics, text here**
->>>>>>> 19609bc9b7f76d53fa40bfd18e1666f5365f5327
+**code, pics, text here** \>\>\>\>\>\>\> 19609bc9b7f76d53fa40bfd18e1666f5365f5327
 
 ## Conclusions
 
