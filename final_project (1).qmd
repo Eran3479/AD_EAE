@@ -30,7 +30,7 @@ By identifying the key elements that contribute to successful course completion,
 
 **Methods:** Data from 8,737 participants in 12 MOOCs (2017-2018) were analyzed. Surveys assessed participants’ motivations, backgrounds, and interactions to identify key factors influencing enrollment and completion.
 
-**Results:** Personal, family, social, labor, and instructional design factors significantly impact MOOC engagement and completion. "Professional development" was most influential, particularly for technical graduates. Effective instructional design, including interactive elements and course relevance, was vital for younger participants, while traditional xMOOC design correlated with lower completion rates.
+**Results:** Personal, family, social, labor, and instructional design factors significantly impact MOOC engagement and completion. "Professional development" was most influential, particularly for technical graduates. Effective instructional design, including interactive elements and course relevance, was vital for younger participants, while traditional MOOC design correlated with lower completion rates.
 
 **Conclusions:** Improving MOOC completion rates hinges on effective instructional design, strong personal motivation, and professional relevance. These insights are essential for educators and course designers seeking to boost MOOC effectiveness and engagement.
 
@@ -54,7 +54,23 @@ The study offers valuable insights into factors affecting MOOC participants' suc
 
 However, the study is limited by its focus on a single platform and qualitative data, suggesting a need for future research incorporating quantitative data, cultural differences, and broader stakeholder perspectives. Overall, the findings provide a basis for designing more effective MOOCs and improving participant outcomes.
 
-## article 5
+## Using a gamified mobile app to increase student engagement, retention and academic achievement
+
+**Introduction**
+
+This study explores the potential of a gamified mobile app to enhance student engagement, retention, and academic performance in higher education. The app was designed to deliver multiple-choice quizzes to students' mobile devices, reinforcing lecture content and encouraging continuous learning.
+
+**Methods**
+
+The app was introduced to students in a first-year accounting unit and several science units. Data on student retention rates, academic performance, and app usage were collected and analyzed to determine the app's impact.
+
+**Results**
+
+The introduction of the app was associated with a 12.23% improvement in student retention rates compared to previous cohorts. Students who used the app had an average grade 7.03% higher than those who did not use the app. A positive correlation (0.40) was found between students’ performance on the app and their academic grades.
+
+**Conclusion**
+
+The study suggests that the gamified mobile app may significantly improve student retention and academic performance. However, further research is needed to establish a causal relationship between app usage and these positive outcomes
 
 ## Conclusion from articles
 
@@ -212,7 +228,8 @@ data = data |>
 A correlation test was used to measure the strength and direction of the relationship between the variables, helping us to determine how changes in each parameter are associated with changes in the target variable (course completion)
 
 ```{r, echo=TRUE, results='hide'}
-#Calculate correlation for each course category between target variable (course completion) and the rest of the variables
+#Calculate correlation for each course category between target variable
+#(course completion) and the rest of the variables
 cor_with_p = data |>
   group_by(CourseCategory) |>
   summarise(across(c(TimeSpentOnCourse, NumberOfVideosWatched, 
@@ -300,7 +317,8 @@ for (category in unique(data$CourseCategory)) {
 For examining normal distribution per parameter within each course category, we used the **Shapiro-Wilk normality test**:
 
 ```{r, echo=TRUE, results='hide'}
-#A normality test for each column, separately for each CourseCategory,using the Shapiro-Wilk test, all of the results are < 0.05, meaning none of them follow a normal distribution
+#A normality test for each column, separately for each CourseCategory,using the Shapiro-Wilk test,
+#all of the results are < 0.05, meaning none of them follow a normal distribution
 # List of numeric columns to test
 numeric_columns = c("TimeSpentOnCourse", "NumberOfVideosWatched", 
                     "NumberOfQuizzesTaken", "QuizScores", 
@@ -394,6 +412,9 @@ model_health <- glm(CourseCompletion ~ DeviceType, data = health_data_ratio, fam
 
 
 odds_ratio_health <- exp(coef(model_health))
+```
+
+```{r, echo=TRUE, results='hide'}
 
 # Business:
 Business_data_ratio <- data %>% filter(CourseCategory == "Business")
@@ -404,8 +425,9 @@ model_business <- glm(CourseCompletion ~ DeviceType, data = Business_data_ratio,
 
 
 odds_ratio_business <- exp(coef(model_business))
+```
 
-
+```{r, echo=TRUE, results='hide'}
 ## Arts:
 
 arts_data_ratio <- data %>% filter(CourseCategory == "Arts")
@@ -416,8 +438,9 @@ model_arts <- glm(CourseCompletion ~ DeviceType, data = arts_data_ratio, family 
 
 
 odds_ratio_arts <- exp(coef(model_arts))
+```
 
-
+```{r, echo=TRUE, results='hide'}
 ## Programming: 
 
 programming_data_ratio <- data %>% filter(CourseCategory == "Programming")
@@ -428,8 +451,9 @@ model_programming <- glm(CourseCompletion ~ DeviceType, data = programming_data_
 
 
 odds_ratio_programming <- exp(coef(model_programming))
+```
 
-
+```{r, echo=TRUE, results='hide'}
 ## Science:
 
 science_data_ratio <- data %>% filter(CourseCategory == "Science")
@@ -441,14 +465,13 @@ model_science <- glm(CourseCompletion ~ DeviceType, data = science_data_ratio, f
 
 odds_ratio_science <- exp(coef(model_science))
 
-
 ```
 
-## Mean by category
+## Percentage of Course completion by category
 
-We calculated the average Course Completion percentage across all course categories
+We calculated the Course Completion percentage across all course categories
 
-```{r, echo=TRUE, results='hide'}
+```{r, echo=TRUE, results='hide', fig.show='hide'}
 data_health = data|>
   filter(CourseCategory == 'Health')
 
@@ -463,36 +486,44 @@ data_Programming <- data %>%
 
 data_business <- data %>%
   filter(CourseCategory == 'Business')
+```
 
-
-calculate_mean_completion <- function(data) {
-  mean_completion <- sum(data$CourseCompletion == 1) / 1500
-  return(mean_completion)
+```{r, echo=TRUE, results='hide', fig.show='hide'}
+calculate_completion <- function(data) {
+  completion <- sum(data$CourseCompletion == 1) / 1500
+  return(completion)
 }
 
-# Calculate mean completion rates for each category
-mean_completion_health <- calculate_mean_completion(data_health)
-mean_completion_science <- calculate_mean_completion(data_science)
-mean_completion_Programming <- calculate_mean_completion(data_Programming)
-mean_completion_arts <- calculate_mean_completion(data_arts)
-mean_completion_business <- calculate_mean_completion(data_business)
+# Calculate completion rates for each category
+completion_health <- calculate_completion(data_health)
+completion_science <- calculate_completion(data_science)
+completion_Programming <- calculate_completion(data_Programming)
+completion_arts <- calculate_completion(data_arts)
+completion_business <- calculate_completion(data_business)
+```
 
-# Create a table with the results
+```{r, echo=TRUE, results='hide', fig.show='hide',dev='svg'}
 completion_rates <- tibble(
   course = c("Health", "Science", "Programming", "Arts", "Business"),
-  completion_rate = c(mean_completion_health, mean_completion_science, mean_completion_Programming, mean_completion_arts, mean_completion_business)
-)
+  completion_rate = c(completion_health, 
+                      completion_science, 
+                      completion_Programming,
+                      completion_arts,
+                      completion_business))
+```
 
-
+```{r, echo=TRUE, results='hide', fig.show='hide'}
 completion_rates_per = completion_rates %>%
   mutate(completion_rate = completion_rate * 100)
+```
 
+```{r, echo=TRUE, results='hide', fig.show='hide'}
 # Create the bar chart
 ggplot(completion_rates_per, aes(x = course, y = completion_rate, fill = course)) +
   geom_bar(stat = 'identity') +
   geom_text(aes(label = round(completion_rate, 1)), vjust = -0.5, size = 3.5) +
   scale_y_continuous(labels = scales::percent_format(scale = 1), limits = c(0, 100)) +
-  labs(title = "Mean of Course Completion by Category",
+  labs(title = " Course Completion by Category",
        x = "Course Category",
        y = "completion of course (pass/not pass) (%)") +
   theme_minimal() +
@@ -505,7 +536,7 @@ ggplot(completion_rates_per, aes(x = course, y = completion_rate, fill = course)
 
 ## Mean by Variables
 
-Next, We calculated the average Course Completion percentage across all course categories by variables
+Next, We calculated the average of all course categories by variables
 
 ```{r, echo=TRUE, results='hide'}
 mean_data <- data %>%
@@ -534,9 +565,9 @@ by_varibles = ggplot(mean_data_long, aes(x = CourseCategory, y = Mean, fill = Co
 
 ```
 
-## Mean by Device Type
+## Percentage of users by Device Type
 
-We calculated the mean of the percentage of users for each device type within each course category to inspect its influence on course completion:
+We calculated the percentage of users for each device type within each course category to inspect its influence on course completion:
 
 ```{r, echo=TRUE, results='hide'}
 device_data <- data %>%
@@ -549,13 +580,15 @@ device_data <- data %>%
       group_by(CourseCategory) %>%
       mutate(Percentage = (UserCount / sum(UserCount)) * 100) %>%
       ungroup()
-    
+```
+
+```{r, echo=TRUE, results='hide', fig.show='hide'}
     # Create the faceted bar graph
     ggplot(device_data, aes(x = as.factor(DeviceType), y = Percentage, fill = as.factor(DeviceType))) +
       geom_bar(stat = "identity") +
-      geom_text(aes(label = paste0(round(Percentage, 1), "%")), vjust = -0.5, size = 3) +  # Add percentage labels on top of bars
+      geom_text(aes(label = paste0(round(Percentage, 1), "%")), vjust = -0.5, size = 3) + 
       facet_wrap(~ CourseCategory) +
-      scale_y_continuous(limits = c(0, 100), labels = scales::percent_format(scale = 1)) +  # Set y-axis limits between 0 and 100
+      scale_y_continuous(limits = c(0, 100), labels = scales::percent_format(scale = 1)) + 
       theme_minimal() +
       labs(title = "Percentage of Users by Device Type Across Course Categories", 
            x = "Device Type", 
@@ -590,7 +623,7 @@ calculate_density = function(x, y) {
 
 ## Time spent on course compared to Completion Rate
 
-```{r, echo=TRUE, results='hide'}
+```{r, echo=TRUE, results='hide', fig.show='hide'}
 # Calculate densities for not completed and completed data
 notcompleted1 <- data %>%
   filter(CourseCompletion == '0') %>%
@@ -599,8 +632,9 @@ notcompleted1 <- data %>%
 completed1 <- data %>%
   filter(CourseCompletion == '1') %>%
   mutate(density = calculate_density(TimeSpentOnCourse, CompletionRate))
+```
 
-
+```{r, echo=TRUE, results='hide', fig.show='hide'}
 highdensity_combined1 <- bind_rows(
   notcompleted1 %>% mutate(Status = "Not Completed"),
   completed1 %>% mutate(Status = "Completed")
@@ -608,8 +642,9 @@ highdensity_combined1 <- bind_rows(
   group_by(CourseCategory, Status) %>%
   filter(density >= quantile(density, 0.8)) %>%
   dplyr:: select(CourseCategory, CourseCompletion, TimeSpentOnCourse, CompletionRate, density, Status)
+```
 
-
+```{r, echo=TRUE, results='hide', fig.show='hide'}
 # Plot the most dense areas
 ggplot(highdensity_combined1, aes(x = TimeSpentOnCourse, y = CompletionRate, color = Status)) +
   geom_point(alpha = 0.6) +
@@ -628,7 +663,7 @@ ggplot(highdensity_combined1, aes(x = TimeSpentOnCourse, y = CompletionRate, col
 
 ## Quiz Score compared to Completion Rate
 
-```{r, echo=TRUE, results='hide'}
+```{r, echo=TRUE, results='hide', fig.show='hide'}
 notcompleted3 <- data %>%
   filter(CourseCompletion == '0') %>%
   mutate(density = calculate_density(QuizScores, CompletionRate))
@@ -636,8 +671,9 @@ notcompleted3 <- data %>%
 completed3 <- data %>%
   filter(CourseCompletion == '1') %>%
   mutate(density = calculate_density(QuizScores, CompletionRate))
+```
 
-
+```{r, echo=TRUE, results='hide', fig.show='hide'}
 highdensity_combined3 <- bind_rows(
   notcompleted3 %>% mutate(Status = "Not Completed"),
   completed3 %>% mutate(Status = "Completed")
@@ -645,7 +681,9 @@ highdensity_combined3 <- bind_rows(
   group_by(CourseCategory, Status) %>%
   filter(density >= quantile(density, 0.8)) %>%
   dplyr:: select(CourseCategory, CourseCompletion, QuizScores, CompletionRate, density, Status)
+```
 
+```{r, echo=TRUE, results='hide', fig.show='hide'}
 # Plot the most dense areas
 ggplot(highdensity_combined3, aes(x = QuizScores, y = CompletionRate, color = Status)) +
   geom_point(alpha = 0.6) +
@@ -672,8 +710,9 @@ notcompleted5 <- data %>%
 completed5 <- data %>%
   filter(CourseCompletion == '1') %>%
   mutate(density = calculate_density(NumberOfQuizzesTaken, QuizScores))
+```
 
-
+```{r, echo=TRUE, results='hide', fig.show='hide'}
 highdensity_combined5 <- bind_rows(
   notcompleted5 %>% mutate(Status = "Not Completed"),
   completed5 %>% mutate(Status = "Completed")
@@ -681,8 +720,9 @@ highdensity_combined5 <- bind_rows(
   group_by(CourseCategory, Status) %>%
   filter(density >= quantile(density, 0.8)) %>%
   dplyr:: select(CourseCategory, CourseCompletion ,NumberOfQuizzesTaken , QuizScores, density, Status)
+```
 
-
+```{r, echo=TRUE, results='hide', fig.show='hide'}
 # Plot the most dense areas
 ggplot(highdensity_combined5, aes(x = NumberOfQuizzesTaken, y = QuizScores, color = Status)) +
   geom_point(alpha = 0.6) +
@@ -710,8 +750,9 @@ notcompleted6 <- data %>%
 completed6 <- data %>%
   filter(CourseCompletion == '1') %>%
   mutate(density = calculate_density(TimeSpentOnCourse, QuizScores))
+```
 
-
+```{r, echo=TRUE, results='hide', fig.show='hide'}
 highdensity_combined6 <- bind_rows(
   notcompleted6 %>% mutate(Status = "Not Completed"),
   completed6 %>% mutate(Status = "Completed")
@@ -719,8 +760,9 @@ highdensity_combined6 <- bind_rows(
   group_by(CourseCategory, Status) %>%
   filter(density >= quantile(density, 0.8)) %>%
   dplyr:: select(CourseCategory, CourseCompletion ,TimeSpentOnCourse , QuizScores, density, Status)
+```
 
-
+```{r, echo=TRUE, results='hide', fig.show='hide'}
 # Plot the most dense areas
 ggplot(highdensity_combined6, aes(x = TimeSpentOnCourse , y = QuizScores, color = Status)) +
   geom_point(alpha = 0.6) +
@@ -895,7 +937,7 @@ It can be observed that the shape of the histograms is **not typical of a normal
 
 ## Fridman
 
-## Chi Test to test the connection between device type and course completion
+## Chi Test to test the connection between Device Type and Course Completion
 
 ```{r, echo=FALSE,results='hide'}
 chi_test_results = data |>
@@ -983,11 +1025,11 @@ odds_ratio_science <- exp(coef(model_science))
 print(odds_ratio_science)
 ```
 
-## mean by category
+## Percentage of Course completion by category
 
 **The bar graph shows the percentage of the student that completed the course by their course category.**
 
-In all course category the completing percentage is bellow 50 %, which is low. the course with the highest percentage is Business and the lowest is Health.
+In all course category the completing percentage is bellow 50 %, which is low. the course with the highest percentage is Programming and the lowest is Health.
 
 ```{r, echo=FALSE}
 data_health = data|>
@@ -996,36 +1038,35 @@ data_health = data|>
 data_arts = data |>
   filter(CourseCategory == 'Arts')
 
-data_science <- data |>
+data_science <- data %>%
   filter(CourseCategory== 'Science')
 
-data_Programming <- data |>
+data_Programming <- data %>%
   filter(CourseCategory == 'Programming')
 
-data_business <- data |>
+data_business <- data %>%
   filter(CourseCategory == 'Business')
 
-
-calculate_mean_completion = function(data) {
-  mean_completion = sum(data$CourseCompletion == 1) / 1500
-  return(mean_completion)
+calculate_completion <- function(data) {
+  completion <- sum(data$CourseCompletion == 1) / 1500
+  return(completion)
 }
 
-# Calculate mean completion rates for each category
-mean_completion_health = calculate_mean_completion(data_health)
-mean_completion_science = calculate_mean_completion(data_science)
-mean_completion_Programming = calculate_mean_completion(data_Programming)
-mean_completion_arts = calculate_mean_completion(data_arts)
-mean_completion_business = calculate_mean_completion(data_business)
+# Calculate completion rates for each category
+completion_health <- calculate_completion(data_health)
+completion_science <- calculate_completion(data_science)
+completion_Programming <- calculate_completion(data_Programming)
+completion_arts <- calculate_completion(data_arts)
+completion_business <- calculate_completion(data_business)
 
-# Create a table with the results
-completion_rates = tibble(
+completion_rates <- tibble(
   course = c("Health", "Science", "Programming", "Arts", "Business"),
-  completion_rate = c(mean_completion_health, mean_completion_science, mean_completion_Programming, mean_completion_arts, mean_completion_business)
-)
-
-
-completion_rates_per = completion_rates |>
+  completion_rate = c(completion_health, 
+                      completion_science, 
+                      completion_Programming,
+                      completion_arts,
+                      completion_business))
+completion_rates_per = completion_rates %>%
   mutate(completion_rate = completion_rate * 100)
 
 # Create the bar chart
@@ -1033,15 +1074,16 @@ ggplot(completion_rates_per, aes(x = course, y = completion_rate, fill = course)
   geom_bar(stat = 'identity') +
   geom_text(aes(label = round(completion_rate, 1)), vjust = -0.5, size = 3.5) +
   scale_y_continuous(labels = scales::percent_format(scale = 1), limits = c(0, 100)) +
-  labs(title = "Mean of Course Completion by Category",
+  labs(title = " Course Completion by Category",
        x = "Course Category",
-       y = "Completion of course (pass/not pass) (%)") +
+       y = "completion of course (pass/not pass) (%)") +
   theme_minimal() +
   theme(legend.position = "none")+
   theme(
     panel.spacing = unit(1, "lines"),  # Add space between panels
     panel.border = element_rect(color = "black", fill = NA, size = 1)  # Add border around each panel
   )
+
 ```
 
 ## Mean by variables
@@ -1074,7 +1116,7 @@ ggplot(mean_data_long, aes(x = CourseCategory, y = Mean, fill = CourseCategory))
   )
 ```
 
-## Mean by device type
+## Percentage of users by Device Type
 
 The use of computers and smartphones is generally **balanced across all course categories**, with **no strong preference for one device type over the other**. In the Business and Health categories, there is a slight tendency for users to favor smartphones, at approximately 51.1%, while in the Arts category, a modest preference for computers is observed at 50.1%. In the Programming and Science categories, the distribution is nearly even, with a minor tendency towards smartphones in Programming and towards computers in Science.
 
@@ -1282,15 +1324,17 @@ ggplot(highdensity_combined6, aes(x = TimeSpentOnCourse , y = QuizScores, color 
 
 # Bibliography
 
-Montgomery, C. (2020). *Person Studying Online*. Retrieved from <https://unsplash.com/photos/macbook-pro-displaying-group-of-people-smgTvepind4>. Unsplash License.
+1.Montgomery, C. (2020). *Person Studying Online*. Retrieved from <https://unsplash.com/photos/macbook-pro-displaying-group-of-people-smgTvepind4>. Unsplash License.
 
-Romero-Rodríguez, L. M., Ramírez-Montoya, M. S., & Aguaded, I. (2020). Determining factors in MOOCs completion rates: Application test in energy sustainability courses. *Sustainability*, *12*(7), 2893.‏ <https://www.mdpi.com/2071-1050/12/7/2893>
+2.Romero-Rodríguez, L. M., Ramírez-Montoya, M. S., & Aguaded, I. (2020). Determining factors in MOOCs completion rates: Application test in energy sustainability courses. *Sustainability*, *12*(7), 2893.‏ <https://www.mdpi.com/2071-1050/12/7/2893>
 
-Jordan, K. (2015). Massive open online course completion rates revisited: Assessment, length and attrition. *International Review of Research in Open and Distributed Learning*, *16*(3), 341-358. <https://www.erudit.org/en/journals/irrodl/2015-v16-n3-irrodl04980/1065985ar/abstract/>
+3.Jordan, K. (2015). Massive open online course completion rates revisited: Assessment, length and attrition. *International Review of Research in Open and Distributed Learning*, *16*(3), 341-358. <https://www.erudit.org/en/journals/irrodl/2015-v16-n3-irrodl04980/1065985ar/abstract/>
 
-Almeda, M. V., Zuech, J., Utz, C., Higgins, G., Reynolds, R., & Baker, R. S. (2018). Comparing the Factors That Predict Completion and Grades Among For-Credit and Open/MOOC Students in Online Learning. *Online Learning*, *22*(1), 1-18.‏ <https://eric.ed.gov/?id=EJ1179661>
+4.Almeda, M. V., Zuech, J., Utz, C., Higgins, G., Reynolds, R., & Baker, R. S. (2018). Comparing the Factors That Predict Completion and Grades Among For-Credit and Open/MOOC Students in Online Learning. *Online Learning*, *22*(1), 1-18.‏ <https://eric.ed.gov/?id=EJ1179661>
 
-Bingol, I., Kursun, E., & Kayaduman, H. (2020). Factors for success and course completion in massive open online courses through the lens of participant types. *Open Praxis*, *12*(2), 223-239.‏ <https://search.informit.org/doi/abs/10.3316/informit.352759430486694>
+5.Bingol, I., Kursun, E., & Kayaduman, H. (2020). Factors for success and course completion in massive open online courses through the lens of participant types. *Open Praxis*, *12*(2), 223-239.‏ <https://search.informit.org/doi/abs/10.3316/informit.352759430486694>
+
+6.Pechenkina, E., Laurence, D., Oates, G., Eldridge, D., & Hunter, D. (2017). Using a gamified mobile app to increase student engagement, retention and academic achievement. International Journal of Educational Technology in Higher Education, 14(31). <https://doi.org/10.1186/s41239-017-0069-7>
 
 ‏
 
