@@ -765,19 +765,19 @@ ggplot(highdensity_combined1, aes(x = TimeSpentOnCourse, y = CompletionRate, col
 ## Quiz Score compared to Completion Rate
 
 ```{r, echo=TRUE, results='hide', fig.show='hide'}
-notcompleted3 <- data %>%
+notcompleted2 <- data %>%
   filter(CourseCompletion == '0') %>%
   mutate(density = calculate_density(QuizScores, CompletionRate))
 
-completed3 <- data %>%
+completed2 <- data %>%
   filter(CourseCompletion == '1') %>%
   mutate(density = calculate_density(QuizScores, CompletionRate))
 ```
 
 ```{r, echo=TRUE, results='hide', fig.show='hide'}
-highdensity_combined3 <- bind_rows(
-  notcompleted3 %>% mutate(Status = "Not Completed"),
-  completed3 %>% mutate(Status = "Completed")
+highdensity_combined2 <- bind_rows(
+  notcompleted2 %>% mutate(Status = "Not Completed"),
+  completed2 %>% mutate(Status = "Completed")
 ) %>%
   group_by(CourseCategory, Status) %>%
   filter(density >= quantile(density, 0.8)) %>%
@@ -786,7 +786,7 @@ highdensity_combined3 <- bind_rows(
 
 ```{r, echo=TRUE, results='hide', fig.show='hide'}
 # Plot the most dense areas
-ggplot(highdensity_combined3, aes(x = QuizScores, y = CompletionRate, color = Status)) +
+ggplot(highdensity_combined2, aes(x = QuizScores, y = CompletionRate, color = Status)) +
   geom_point(alpha = 0.6) +
   facet_wrap(~ CourseCategory, ncol = 3) +
   scale_color_manual(values = c("Completed" = "blue", "Not Completed" = "red")) +
@@ -804,19 +804,19 @@ ggplot(highdensity_combined3, aes(x = QuizScores, y = CompletionRate, color = St
 ## Number of Quiz Taken compared to Quiz Score
 
 ```{r, echo=TRUE, results='hide'}
-notcompleted5 <- data %>%
+notcompleted3 <- data %>%
   filter(CourseCompletion == '0') %>%
   mutate(density = calculate_density(NumberOfQuizzesTaken, QuizScores))
 
-completed5 <- data %>%
+completed3 <- data %>%
   filter(CourseCompletion == '1') %>%
   mutate(density = calculate_density(NumberOfQuizzesTaken, QuizScores))
 ```
 
 ```{r, echo=TRUE, results='hide', fig.show='hide'}
-highdensity_combined5 <- bind_rows(
-  notcompleted5 %>% mutate(Status = "Not Completed"),
-  completed5 %>% mutate(Status = "Completed")
+highdensity_combined3 <- bind_rows(
+  notcompleted3 %>% mutate(Status = "Not Completed"),
+  completed3 %>% mutate(Status = "Completed")
 ) %>%
   group_by(CourseCategory, Status) %>%
   filter(density >= quantile(density, 0.8)) %>%
@@ -825,7 +825,7 @@ highdensity_combined5 <- bind_rows(
 
 ```{r, echo=TRUE, results='hide', fig.show='hide'}
 # Plot the most dense areas
-ggplot(highdensity_combined5, aes(x = NumberOfQuizzesTaken, y = QuizScores, color = Status)) +
+ggplot(highdensity_combined3, aes(x = NumberOfQuizzesTaken, y = QuizScores, color = Status)) +
   geom_point(alpha = 0.6) +
   facet_wrap(~ CourseCategory, ncol = 3) +
   scale_color_manual(values = c("Completed" = "blue", "Not Completed" = "red")) +
@@ -844,19 +844,19 @@ ggplot(highdensity_combined5, aes(x = NumberOfQuizzesTaken, y = QuizScores, colo
 ## Time spent on course compared to Quiz Score
 
 ```{r, echo=TRUE, results='hide'}
-notcompleted6 <- data %>%
+notcompleted4 <- data %>%
   filter(CourseCompletion == '0') %>%
   mutate(density = calculate_density(TimeSpentOnCourse, QuizScores))
 
-completed6 <- data %>%
+completed4 <- data %>%
   filter(CourseCompletion == '1') %>%
   mutate(density = calculate_density(TimeSpentOnCourse, QuizScores))
 ```
 
 ```{r, echo=TRUE, results='hide', fig.show='hide'}
-highdensity_combined6 <- bind_rows(
-  notcompleted6 %>% mutate(Status = "Not Completed"),
-  completed6 %>% mutate(Status = "Completed")
+highdensity_combined4 <- bind_rows(
+  notcompleted4 %>% mutate(Status = "Not Completed"),
+  completed4 %>% mutate(Status = "Completed")
 ) %>%
   group_by(CourseCategory, Status) %>%
   filter(density >= quantile(density, 0.8)) %>%
@@ -865,7 +865,7 @@ highdensity_combined6 <- bind_rows(
 
 ```{r, echo=TRUE, results='hide', fig.show='hide'}
 # Plot the most dense areas
-ggplot(highdensity_combined6, aes(x = TimeSpentOnCourse , y = QuizScores, color = Status)) +
+ggplot(highdensity_combined4, aes(x = TimeSpentOnCourse , y = QuizScores, color = Status)) +
   geom_point(alpha = 0.6) +
   facet_wrap(~ CourseCategory, ncol = 3) +
   scale_color_manual(values = c("Completed" = "blue", "Not Completed" = "red")) +
@@ -1396,18 +1396,18 @@ ggplot(highdensity_combined1, aes(x = TimeSpentOnCourse, y = CompletionRate, col
 The plot shows a **distinct separation** between students who completed the course and those who did not. Students who **completed the course** typically have **quiz scores above 0.5** and **completion rates close to 1.0**, while those who **did not complete** tend to have **quiz scores below 0.5** and **completion rates under 0.5**. To successfully complete the course, students generally need a quiz score of at least 0.5 and a high completion rate, indicating a **strong link** between **higher quiz scores and consistent course engagement**.
 
 ```{r, echo=FALSE}
-notcompleted3 <- data %>%
+notcompleted2 <- data %>%
   filter(CourseCompletion == '0') %>%
   mutate(density = calculate_density(QuizScores, CompletionRate))
 
-completed3 <- data %>%
+completed2 <- data %>%
   filter(CourseCompletion == '1') %>%
   mutate(density = calculate_density(QuizScores, CompletionRate))
 
 
-highdensity_combined3 <- bind_rows(
-  notcompleted3 %>% mutate(Status = "Not Completed"),
-  completed3 %>% mutate(Status = "Completed")
+highdensity_combined2 <- bind_rows(
+  notcompleted2 %>% mutate(Status = "Not Completed"),
+  completed2 %>% mutate(Status = "Completed")
 ) %>%
   group_by(CourseCategory, Status) %>%
   filter(density >= quantile(density, 0.8)) %>%
@@ -1415,7 +1415,7 @@ highdensity_combined3 <- bind_rows(
 
 
 # Plot the most dense areas
-ggplot(highdensity_combined3, aes(x = QuizScores, y = CompletionRate, color = Status)) +
+ggplot(highdensity_combined2, aes(x = QuizScores, y = CompletionRate, color = Status)) +
   geom_point(alpha = 0.6) +
   facet_wrap(~ CourseCategory, ncol = 3) +
   scale_color_manual(values = c("Completed" = "blue", "Not Completed" = "red")) +
@@ -1435,18 +1435,18 @@ ggplot(highdensity_combined3, aes(x = QuizScores, y = CompletionRate, color = St
 Students who successfully complete the course generally engage with a higher number of quizzes, often reaching the maximum, and achieve scores above 0.5. However, there is a significant group, particularly in the **Health** and **Programming** categories, who, despite attempting a substantial number of quizzes, fail to complete the course due to lower quiz scores. This indicates that while active participation in quizzes is important, it’s the quality of performance on these quizzes that ultimately determines whether students can successfully complete their courses
 
 ```{r, echo=FALSE}
-notcompleted5 <- data %>%
+notcompleted3 <- data %>%
   filter(CourseCompletion == '0') %>%
   mutate(density = calculate_density(NumberOfQuizzesTaken, QuizScores))
 
-completed5 <- data %>%
+completed3 <- data %>%
   filter(CourseCompletion == '1') %>%
   mutate(density = calculate_density(NumberOfQuizzesTaken, QuizScores))
 
 
-highdensity_combined5 <- bind_rows(
-  notcompleted5 %>% mutate(Status = "Not Completed"),
-  completed5 %>% mutate(Status = "Completed")
+highdensity_combined3 <- bind_rows(
+  notcompleted3 %>% mutate(Status = "Not Completed"),
+  completed3 %>% mutate(Status = "Completed")
 ) %>%
   group_by(CourseCategory, Status) %>%
   filter(density >= quantile(density, 0.8)) %>%
@@ -1454,7 +1454,7 @@ highdensity_combined5 <- bind_rows(
 
 
 # Plot the most dense areas
-ggplot(highdensity_combined5, aes(x = NumberOfQuizzesTaken, y = QuizScores, color = Status)) +
+ggplot(highdensity_combined3, aes(x = NumberOfQuizzesTaken, y = QuizScores, color = Status)) +
   geom_point(alpha = 0.6) +
   facet_wrap(~ CourseCategory, ncol = 3) +
   scale_color_manual(values = c("Completed" = "blue", "Not Completed" = "red")) +
@@ -1475,18 +1475,18 @@ ggplot(highdensity_combined5, aes(x = NumberOfQuizzesTaken, y = QuizScores, colo
 Across all categories, there is a clear trend where **higher quiz scores** are associated with **course completion**, regardless of the time spent on the course. However, in categories like **Health** and **Programming**, spending **more** time **without** achieving **high** quiz scores still often leads to **non-completion**. Overall, **performing well** on **quizzes** is a more consistent predictor of course completion than the amount of time spent on the course.
 
 ```{r, echo=FALSE}
-notcompleted6 <- data %>%
+notcompleted4 <- data %>%
   filter(CourseCompletion == '0') %>%
   mutate(density = calculate_density(TimeSpentOnCourse, QuizScores))
 
-completed6 <- data %>%
+completed4 <- data %>%
   filter(CourseCompletion == '1') %>%
   mutate(density = calculate_density(TimeSpentOnCourse, QuizScores))
 
 
-highdensity_combined6 <- bind_rows(
-  notcompleted6 %>% mutate(Status = "Not Completed"),
-  completed6 %>% mutate(Status = "Completed")
+highdensity_combined4 <- bind_rows(
+  notcompleted4 %>% mutate(Status = "Not Completed"),
+  completed4 %>% mutate(Status = "Completed")
 ) %>%
   group_by(CourseCategory, Status) %>%
   filter(density >= quantile(density, 0.8)) %>%
@@ -1494,7 +1494,7 @@ highdensity_combined6 <- bind_rows(
 
 
 # Plot the most dense areas
-ggplot(highdensity_combined6, aes(x = TimeSpentOnCourse , y = QuizScores, color = Status)) +
+ggplot(highdensity_combined4, aes(x = TimeSpentOnCourse , y = QuizScores, color = Status)) +
   geom_point(alpha = 0.6) +
   facet_wrap(~ CourseCategory, ncol = 3) +
   scale_color_manual(values = c("Completed" = "blue", "Not Completed" = "red")) +
@@ -1511,13 +1511,14 @@ ggplot(highdensity_combined6, aes(x = TimeSpentOnCourse , y = QuizScores, color 
 
 ## Summarize of Plotting
 
-::: v-center-container
-**Higher quiz scores** and **consistent course engagement** are the most reliable predictors of course completion across all categories. While time spent on the course and the number of quizzes taken are important, they are not sufficient on their own; students need to achieve scores **above 0.5** to increase their chances of completing the course successfully, particularly in the **Health** and **Programming** categories.
-:::
+**Higher quiz scores** and **consistent course engagement** (Completion Rate), are the most reliable predictors of course completion across all categories. While time spent on the course and the number of quizzes taken are important, they are not sufficient on their own; students need to achieve scores **above 0.5** to increase their chances of completing the course successfully, particularly in the **Health** and **Programming** categories.
+
 
 # Conclusions
 
 The analysis shows that **CompletionRate** is consistently the strongest predictor of **CourseCompletion** across different categories, indicating its significant role in course outcomes. In contrast, **TimeSpentOnCourse** has a weaker relationship with course completion. The p-values for most correlations are very low, confirming their statistical significance, except for **DeviceType**, which shows higher p-values and suggests less impact on course completion. Normality tests reveal that all parameters do not follow a perfect normal distribution, which could influence the correlation results. Overall, **CompletionRate** is a key factor in predicting course completion, while **DeviceType** appears less influential.
+
+In general, the percentage of student passing the courses are below 50%, which raises questions about the success of this style of studying. in a follow up research it will be interesting to examine the preferred and better way for education.
 
 # Bibliography
 
