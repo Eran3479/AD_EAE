@@ -9,6 +9,7 @@ format:
     editor: visual
     number-sections: true
     toc: true
+    toc-depth: 1
     scrollable: true
     slide-number: true
     incremental: true
@@ -109,7 +110,7 @@ Among the parameters themselves, we anticipate a strong positive correlation bet
 
 # Methods- Overview
 
-In this project, we undertook a thorough analysis by first cleaning the data to ensure accuracy. We then performed correlation tests to identify relationships between variables, and checked for normal distribution using the Shapiro-Wilk test. Our analysis included running ANOVA to compare group means and using the Friedman test as a non-parametric alternative. We also calculated various means to summarize the data and created graphs to visualize the connections between different variables. This approach allowed us to gain a clear understanding of the relationships within the data.
+In this project, we conducted a thorough analysis, starting with data cleaning to ensure accuracy. We performed correlation tests to identify relationships between variables and used the Shapiro-Wilk test to check for normal distribution. We ran a logistic regression model as a non-parametric method to analyze the data. Additionally, we calculated various means to summarize the data and created graphs to visualize the connections between different variables. This approach provided us with a clear understanding of the relationships within the data.
 
 ## Loading the data and the necessary libraries
 
