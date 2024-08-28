@@ -1,0 +1,2201 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="final_project_files/libs/clipboard/clipboard.min.js"></script>
+<script src="final_project_files/libs/quarto-html/tabby.min.js"></script>
+<script src="final_project_files/libs/quarto-html/popper.min.js"></script>
+<script src="final_project_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="final_project_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="final_project_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="final_project_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="final_project_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.5.45">
+
+  <meta name="author" content="Einat Liron 318808813  Assaf Nissim 206500290   Eran Tsur 207350901">
+  <title>ADS Final Project  User Behavior &amp; Course Completion</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="final_project_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="final_project_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="final_project_files/libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="styles.css">
+  <link href="final_project_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="final_project_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="final_project_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="final_project_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script src="final_project_files/libs/kePrint-0.0.1/kePrint.js"></script>
+
+  <link href="final_project_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">ADS Final Project <br>User Behavior &amp; Course Completion</h1>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Einat Liron 318808813<br> Assaf Nissim 206500290 <br> Eran Tsur 207350901 
+</div>
+</div>
+</div>
+
+</section><section id="TOC">
+<nav role="doc-toc"> 
+<h2 id="toc-title">Table of contents</h2>
+<ul>
+<li class="fragment"><a href="#/introduction" id="/toc-introduction"><span class="header-section-number">1</span> Introduction</a></li>
+<li class="fragment"><a href="#/literature-review" id="/toc-literature-review"><span class="header-section-number">2</span> Literature review</a></li>
+<li class="fragment"><a href="#/dataset-description" id="/toc-dataset-description"><span class="header-section-number">3</span> Dataset description</a></li>
+<li class="fragment"><a href="#/hypothesis" id="/toc-hypothesis"><span class="header-section-number">4</span> Hypothesis</a></li>
+<li class="fragment"><a href="#/methods--overview" id="/toc-methods--overview"><span class="header-section-number">5</span> Methods- Overview</a></li>
+<li class="fragment"><a href="#/main-results" id="/toc-main-results"><span class="header-section-number">6</span> Main results</a></li>
+<li class="fragment"><a href="#/conclusions" id="/toc-conclusions"><span class="header-section-number">7</span> Conclusions</a></li>
+<li class="fragment"><a href="#/bibliography" id="/toc-bibliography"><span class="header-section-number">8</span> Bibliography</a></li>
+<li class="fragment"><a href="#/additional-links" id="/toc-additional-links"><span class="header-section-number">9</span> Additional links</a></li>
+</ul>
+</nav>
+</section>
+<section id="introduction" class="title-slide slide level1 center" data-number="1">
+<h1><span class="header-section-number">1</span> Introduction</h1>
+<p>In the rapidly expanding field of online education, understanding the factors that drive student engagement and course completion is crucial for optimizing learning experiences. Predicting online course engagement involves analyzing various aspects of user behavior, including interaction patterns, time spent on tasks, and the effectiveness of instructional design.</p>
+<p>By identifying the key elements that contribute to successful course completion, educators and platform developers can tailor their approaches to meet the diverse needs of learners, ultimately improving retention rates and educational outcomes. This research focuses on exploring the intricate relationship between user behavior and course completion, aiming to enhance our understanding of what motivates students to persist and succeed in an online learning environment.</p>
+
+<img data-src="Picture.jpg" class="quarto-figure quarto-figure-center r-stretch" width="6500"></section>
+
+<section>
+<section id="literature-review" class="title-slide slide level1 center" data-number="2">
+<h1><span class="header-section-number">2</span> Literature review</h1>
+
+</section>
+<section id="determining-factors-in-moocs-completion-rates-application-test-in-energy-sustainability-courses" class="slide level2" data-number="2.1">
+<h2><span class="header-section-number">2.1</span> Determining Factors in MOOCs Completion Rates: Application Test in Energy Sustainability Courses</h2>
+<p><strong>Introduction:</strong>This study explores factors affecting Massive Open Online Course (MOOC) completion rates, specifically in energy sustainability courses. It examines how personal, family, social, labor, and instructional design factors influence engagement and course completion.</p>
+<p><strong>Methods:</strong> Data from 8,737 participants in 12 MOOCs (2017-2018) were analyzed. Surveys assessed participants’ motivations, backgrounds, and interactions to identify key factors influencing enrollment and completion.</p>
+<p><strong>Results:</strong> Personal, family, social, labor, and instructional design factors significantly impact MOOC engagement and completion. “Professional development” was most influential, particularly for technical graduates. Effective instructional design, including interactive elements and course relevance, was vital for younger participants, while traditional MOOC design correlated with lower completion rates.</p>
+<p><strong>Conclusions:</strong> Improving MOOC completion rates hinges on effective instructional design, strong personal motivation, and professional relevance. These insights are essential for educators and course designers seeking to boost MOOC effectiveness and engagement.</p>
+</section>
+<section id="massive-open-online-course-completion-rates-revisited-assessment-length-and-attrition" class="slide level2" data-number="2.2">
+<h2><span class="header-section-number">2.2</span> Massive Open Online Course Completion Rates Revisited: Assessment, Length and Attrition</h2>
+<p><strong>Introduction:</strong> This study updates Jordan’s 2014 work by analyzing enrollment and completion data from 221 MOOCs to identify factors affecting completion rates amidst changing enrollment trends.</p>
+<p><strong>Methods:</strong> The analysis uses multiple regression to evaluate how course length, start date, and assessment type impact completion rates, with data showing rates from 0.7% to 52.1%.</p>
+<p><strong>Results:</strong> Longer courses and those using peer grading are associated with lower completion rates. Course length and early engagement are significant factors, while university ranking and total enrollment are not.</p>
+<p><strong>Conclusions:</strong> Course length and assessment type significantly affect MOOC completion rates. Further research is needed due to data limitations and evolving trends.</p>
+</section>
+<section id="comparing-the-factors-that-predict-completion-and-grades-among-for-credit-and-openmooc-students-in-online-learning" class="slide level2" data-number="2.3">
+<h2><span class="header-section-number">2.3</span> Comparing the Factors That Predict Completion and Grades Among For-Credit and Open/MOOC Students in Online Learning</h2>
+<p><strong>Introduction:</strong> This study compares the factors that predict course completion and grades among two groups of online learners: for-credit students and open/MOOC participants. The research aims to identify key engagement factors that influence completion rates.</p>
+<p><strong>Methods:</strong> The study analyzes engagement behaviors such as forum participation and the number of comments made by students to determine their impact on course completion for both for-credit and MOOC students.</p>
+<p><strong>Results:</strong> Active engagement in course activities, particularly forum participation, was a strong predictor of course completion for both for-credit and MOOC students. For-credit students’ completion was more closely tied to these interactive elements, while MOOC students also showed similar patterns, though with slight variations.</p>
+<p><strong>Conclusions:</strong> The study emphasizes the critical role of active engagement in predicting successful course completion in both for-credit and MOOC contexts. The findings suggest that promoting interactive course elements could enhance completion rates across different types of online learning environments.</p>
+</section>
+<section id="factors-for-success-and-course-completion-in-massive-open-online-courses-through-the-lens-of-participant-types" class="slide level2" data-number="2.4">
+<h2><span class="header-section-number">2.4</span> Factors for Success and Course Completion in Massive Open Online Courses through the Lens of Participant Types</h2>
+<p><strong>Introduction:</strong> This study provides insights into the factors affecting success and course completion in MOOCs by categorizing participants based on their involvement in course activities. It examines how participant categorization, interaction, and instructor effectiveness influence outcomes.</p>
+<p><strong>Methods:</strong> The research focuses on identifying participant types through diagnostic surveys and assessing the impact of interaction and instructor effectiveness on success and course completion.</p>
+<p><strong>Results:</strong> The study highlights the importance of participant categorization in understanding success factors in MOOCs. Interaction between students and instructors, as well as the instructor’s teaching style, were found to be critical for course completion. The study also notes limitations related to its focus on a single platform and reliance on qualitative data.</p>
+<p><strong>Conclusions:</strong> The findings provide a basis for designing more effective MOOCs by considering participant types, fostering interaction, and enhancing instructor effectiveness. The study suggests further research incorporating quantitative data, cultural differences, and broader stakeholder perspectives to deepen understanding of MOOC success factors</p>
+</section>
+<section id="using-a-gamified-mobile-app-to-increase-student-engagement-retention-and-academic-achievement" class="slide level2" data-number="2.5">
+<h2><span class="header-section-number">2.5</span> Using a gamified mobile app to increase student engagement, retention and academic achievement</h2>
+<p><strong>Introduction</strong></p>
+<p>This study explores the potential of a gamified mobile app to enhance student engagement, retention, and academic performance in higher education. The app was designed to deliver multiple-choice quizzes to students’ mobile devices, reinforcing lecture content and encouraging continuous learning.</p>
+<p><strong>Methods</strong></p>
+<p>The app was introduced to students in a first-year accounting unit and several science units. Data on student retention rates, academic performance, and app usage were collected and analyzed to determine the app’s impact.</p>
+<p><strong>Results</strong></p>
+<p>The introduction of the app was associated with a 12.23% improvement in student retention rates compared to previous cohorts. Students who used the app had an average grade 7.03% higher than those who did not use the app. A positive correlation (0.40) was found between students’ performance on the app and their academic grades.</p>
+<p><strong>Conclusion</strong></p>
+<p>The study suggests that the gamified mobile app may significantly improve student retention and academic performance. However, further research is needed to establish a causal relationship between app usage and these positive outcomes</p>
+</section>
+<section id="conclusion-from-articles" class="slide level2" data-number="2.6">
+<h2><span class="header-section-number">2.6</span> Conclusion from articles</h2>
+<p>The reviewed studies highlight that effective instructional design, personal motivation, and professional relevance are crucial for improving MOOC completion rates. Engaging course content, interactive elements, and alignment with participants’ professional goals significantly enhance both engagement and success.</p>
+<p>Additionally, the length of the course and the type of assessment methods used are pivotal, with shorter courses and varied assessments generally leading to higher completion rates. Active participation in course activities is a strong predictor of success. Future research should address the limitations of current studies by incorporating quantitative data, exploring cultural differences, and considering diverse stakeholder perspectives to further enhance MOOC design and implementation.</p>
+</section></section>
+<section id="dataset-description" class="title-slide slide level1 center" data-number="3">
+<h1><span class="header-section-number">3</span> Dataset description</h1>
+<p>The dataset to be analyzed provides a detailed snapshot of user engagement within an online course platform, offering valuable insights into the factors that influence course completion.</p>
+<p>It includes a range of features that capture various aspects of user behavior and course interaction. These features include user demographics, such as unique identifiers and the type of device used, as well as course-specific data like the category of the course, time spent on the course, the number of videos watched, and the number of quizzes taken.</p>
+<p>Additionally, the dataset provides metrics on quiz performance and completion rates, with the target variable indicating whether a user successfully completed the course. This comprehensive dataset enables a multifaceted analysis aimed at understanding how different engagement metrics contribute to the likelihood of course completion, providing a basis for optimizing educational strategies and improving learner outcomes.</p>
+</section>
+
+<section id="hypothesis" class="title-slide slide level1 center" data-number="4">
+<h1><span class="header-section-number">4</span> Hypothesis</h1>
+<p>How do different factors such as Time Spent on Course, Number of Videos Watched, Number of Quizzes Taken, Quiz Scores, Completion Rate, and Device Type influence the likelihood of Course Completion across various Course Categories?</p>
+<p>In this research, we hypothesize that the likelihood of course completion will be most strongly influenced by <strong>Completion Rate</strong> and <strong>Quiz Scores</strong>, as these directly reflect a student’s progress and understanding. <strong>Time Spent on Course</strong> and <strong>Number of Videos Watched</strong> are also expected to positively impact completion, though likely to a lesser extent. <strong>Device Type</strong> may have a moderate influence, with desktop users potentially showing higher completion rates than mobile users.</p>
+<p>In comparison between Course Categories we anticipate to see a difference in the different parameters, as one course demands more than another. For example we expect to see more <strong>time spend</strong> in the <strong>Health</strong> course compared to <strong>Arts</strong>.</p>
+<p>Among the parameters themselves, we anticipate a strong positive correlation between <strong>Time Spent on Course</strong> and <strong>Number of Videos Watched</strong>, as well as between <strong>Quiz Scores</strong> and <strong>Completion Rate</strong>. <strong>Time Spent on Course</strong> is also likely to be closely linked to <strong>Number of Quizzes Taken</strong>. These relationships will help identify the key drivers of successful course completion across different Course Categories.</p>
+</section>
+
+<section>
+<section id="methods--overview" class="title-slide slide level1 center" data-number="5">
+<h1><span class="header-section-number">5</span> Methods- Overview</h1>
+<p>In this project, we conducted a thorough analysis, starting with data cleaning to ensure accuracy. We performed correlation tests to identify relationships between variables and used the Shapiro-Wilk test to check for normal distribution. We ran a logistic regression model as a non-parametric method to analyze the data. Additionally, we calculated various means to summarize the data and created graphs to visualize the connections between different variables. This approach provided us with a clear understanding of the relationships within the data.</p>
+</section>
+<section id="loading-the-data-and-the-necessary-libraries" class="slide level2" data-number="5.1">
+<h2><span class="header-section-number">5.1</span> Loading the data and the necessary libraries</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb1-2"><a href=""></a><span class="fu">install.packages</span>(<span class="st">"reshape2"</span>)</span>
+<span id="cb1-3"><a href=""></a><span class="fu">install.packages</span>(<span class="st">"corrplot"</span>)</span>
+<span id="cb1-4"><a href=""></a><span class="fu">install.packages</span>(<span class="st">"knitr"</span>)</span>
+<span id="cb1-5"><a href=""></a><span class="fu">install.packages</span>(<span class="st">"kableExtra"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-2"><a href=""></a><span class="fu">library</span>(reshape2)</span>
+<span id="cb2-3"><a href=""></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb2-4"><a href=""></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb2-5"><a href=""></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-6"><a href=""></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb2-7"><a href=""></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb2-8"><a href=""></a><span class="fu">library</span>(MASS)</span>
+<span id="cb2-9"><a href=""></a><span class="fu">library</span>(reshape2)</span>
+<span id="cb2-10"><a href=""></a><span class="fu">library</span>(knitr)</span>
+<span id="cb2-11"><a href=""></a><span class="fu">library</span>(broom)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="co"># Reading the file into R</span></span>
+<span id="cb3-2"><a href=""></a>data <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="co"># Convert to tibble</span></span>
+<span id="cb4-2"><a href=""></a>  data <span class="ot">=</span> <span class="fu">as_tibble</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="inspecting-and-cleaning-the-data" class="slide level2" data-number="5.2">
+<h2><span class="header-section-number">5.2</span> Inspecting and cleaning the data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="co"># Insepecting the data</span></span>
+<span id="cb5-2"><a href=""></a><span class="fu">summary</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     UserID     CourseCategory     TimeSpentOnCourse NumberOfVideosWatched
+ Min.   :   1   Length:9000        Min.   : 1.005    Min.   : 0.00        
+ 1st Qu.:2252   Class :character   1st Qu.:25.441    1st Qu.: 5.00        
+ Median :4484   Mode  :character   Median :49.818    Median :10.00        
+ Mean   :4499                      Mean   :50.164    Mean   :10.02        
+ 3rd Qu.:6751                      3rd Qu.:75.070    3rd Qu.:15.00        
+ Max.   :9000                      Max.   :99.993    Max.   :20.00        
+ NumberOfQuizzesTaken   QuizScores    CompletionRate       DeviceType    
+ Min.   : 0.000       Min.   :50.01   Min.   : 0.00933   Min.   :0.0000  
+ 1st Qu.: 2.000       1st Qu.:62.28   1st Qu.:25.65361   1st Qu.:0.0000  
+ Median : 5.000       Median :74.74   Median :50.26412   Median :1.0000  
+ Mean   : 5.091       Mean   :74.71   Mean   :50.34015   Mean   :0.5007  
+ 3rd Qu.: 8.000       3rd Qu.:87.02   3rd Qu.:75.57249   3rd Qu.:1.0000  
+ Max.   :10.000       Max.   :99.99   Max.   :99.97971   Max.   :1.0000  
+ CourseCompletion
+ Min.   :0.0000  
+ 1st Qu.:0.0000  
+ Median :0.0000  
+ Mean   :0.3964  
+ 3rd Qu.:1.0000  
+ Max.   :1.0000  </code></pre>
+</div>
+</div>
+</section>
+<section id="checking-for-nas-and-removing-unnecessary-columns-and-rows" class="slide level2" data-number="5.3">
+<h2><span class="header-section-number">5.3</span> Checking for NA’s and removing unnecessary columns and rows</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="co">#Check for NA's</span></span>
+<span id="cb7-2"><a href=""></a><span class="fu">sapply</span>(data, <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">is.na</span>(x))) <span class="co"># NO NA's</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>               UserID        CourseCategory     TimeSpentOnCourse 
+                    0                     0                     0 
+NumberOfVideosWatched  NumberOfQuizzesTaken            QuizScores 
+                    0                     0                     0 
+       CompletionRate            DeviceType      CourseCompletion 
+                    0                     0                     0 </code></pre>
+</div>
+</div>
+<p>the UserID column was removed as it is not necessary for the data analysis.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="co"># Remove UserID column</span></span>
+<span id="cb9-2"><a href=""></a>data <span class="ot">=</span> dplyr<span class="sc">::</span><span class="fu">select</span>(data, <span class="sc">-</span>UserID)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="checking-for-nas-and-removing-unnecessary-columns-and-rows-1" class="slide level2" data-number="5.4">
+<h2><span class="header-section-number">5.4</span> Checking for NA’s and removing unnecessary columns and rows</h2>
+<p>All of the duplicated observations were also removed by executing the following code:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="co"># Check for duplicates</span></span>
+<span id="cb10-2"><a href=""></a>duplicates <span class="ot">=</span> data[<span class="fu">duplicated</span>(data), ] <span class="co"># 877 duplicated rows</span></span>
+<span id="cb10-3"><a href=""></a>duplicates</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 877 × 8
+   CourseCategory TimeSpentOnCourse NumberOfVideosWatched NumberOfQuizzesTaken
+   &lt;chr&gt;                      &lt;dbl&gt;                 &lt;int&gt;                &lt;int&gt;
+ 1 Programming                76.3                      0                    9
+ 2 Science                    60.9                      4                   10
+ 3 Health                      4.18                    15                    6
+ 4 Science                    93.5                      6                    7
+ 5 Business                   19.7                      2                    4
+ 6 Health                     70.2                      5                    4
+ 7 Health                     27.3                     17                    3
+ 8 Science                    91.6                      4                    3
+ 9 Business                   20.4                      6                    0
+10 Science                    21.9                      7                    9
+# ℹ 867 more rows
+# ℹ 4 more variables: QuizScores &lt;dbl&gt;, CompletionRate &lt;dbl&gt;, DeviceType &lt;int&gt;,
+#   CourseCompletion &lt;int&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="co">#Removing duplicates</span></span>
+<span id="cb12-2"><a href=""></a>data <span class="ot">=</span> data <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href=""></a>  <span class="fu">distinct</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="co">#Check to see if the duplicates were removed, should equal to 0</span></span>
+<span id="cb13-2"><a href=""></a><span class="fu">sum</span>(<span class="fu">duplicated</span>(data)) <span class="co"># 0 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+</div>
+</section>
+<section id="normalizing-the-data" class="slide level2" data-number="5.5">
+<h2><span class="header-section-number">5.5</span> Normalizing the data</h2>
+<p>normalizing the parameters’ values to a range of 0-1 for the ease of work:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="co"># Function to normalize columns</span></span>
+<span id="cb15-2"><a href=""></a>normalize <span class="ot">=</span> <span class="cf">function</span>(x) {</span>
+<span id="cb15-3"><a href=""></a>  <span class="fu">return</span>((x <span class="sc">-</span> <span class="fu">min</span>(x)) <span class="sc">/</span> (<span class="fu">max</span>(x) <span class="sc">-</span> <span class="fu">min</span>(x)))</span>
+<span id="cb15-4"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="co"># Normalize the specified columns</span></span>
+<span id="cb16-2"><a href=""></a>data <span class="ot">=</span> data <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">TimeSpentOnCourse =</span> <span class="fu">normalize</span>(TimeSpentOnCourse),</span>
+<span id="cb16-4"><a href=""></a>         <span class="at">NumberOfVideosWatched =</span> <span class="fu">normalize</span>(NumberOfVideosWatched),</span>
+<span id="cb16-5"><a href=""></a>         <span class="at">NumberOfQuizzesTaken =</span> <span class="fu">normalize</span>(NumberOfQuizzesTaken),</span>
+<span id="cb16-6"><a href=""></a>         <span class="at">QuizScores =</span> <span class="fu">normalize</span>(QuizScores),</span>
+<span id="cb16-7"><a href=""></a>         <span class="at">CompletionRate =</span> <span class="fu">normalize</span>(CompletionRate))</span>
+<span id="cb16-8"><a href=""></a></span>
+<span id="cb16-9"><a href=""></a><span class="co"># Rounding the decimal numbers</span></span>
+<span id="cb16-10"><a href=""></a>data <span class="ot">=</span> data <span class="sc">|&gt;</span></span>
+<span id="cb16-11"><a href=""></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">all_of</span>(<span class="fu">c</span>(<span class="st">"DeviceType"</span>)), round, <span class="dv">3</span>))</span>
+<span id="cb16-12"><a href=""></a></span>
+<span id="cb16-13"><a href=""></a><span class="co"># View the normalized data</span></span>
+<span id="cb16-14"><a href=""></a><span class="fu">head</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 8
+  CourseCategory TimeSpentOnCourse NumberOfVideosWatched NumberOfQuizzesTaken
+  &lt;chr&gt;                      &lt;dbl&gt;                 &lt;dbl&gt;                &lt;dbl&gt;
+1 Health                     0.293                  0.85                  0.3
+2 Arts                       0.271                  0.05                  0.5
+3 Arts                       0.867                  0.7                   0.2
+4 Science                    0.344                  0.85                  1  
+5 Programming                0.924                  0.8                   0  
+6 Health                     0.793                  0.6                   0.7
+# ℹ 4 more variables: QuizScores &lt;dbl&gt;, CompletionRate &lt;dbl&gt;, DeviceType &lt;int&gt;,
+#   CourseCompletion &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="reducing-observations" class="slide level2" data-number="5.6">
+<h2><span class="header-section-number">5.6</span> Reducing observations</h2>
+<p>Reducing the number of observations from each course category so it doesn’t affect our analysis:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a><span class="co"># count how many students from each category</span></span>
+<span id="cb18-2"><a href=""></a>category <span class="ot">=</span> data <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a href=""></a>  <span class="fu">group_by</span>(CourseCategory) <span class="sc">|&gt;</span></span>
+<span id="cb18-4"><a href=""></a>  <span class="fu">summarise</span>(<span class="at">Count =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="co"># Subset 1500 records from each course category randomly</span></span>
+<span id="cb19-2"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb19-3"><a href=""></a></span>
+<span id="cb19-4"><a href=""></a>data <span class="ot">=</span> data <span class="sc">|&gt;</span>  </span>
+<span id="cb19-5"><a href=""></a>  <span class="fu">group_by</span>(CourseCategory) <span class="sc">|&gt;</span></span>
+<span id="cb19-6"><a href=""></a>  <span class="fu">sample_n</span>(<span class="dv">1500</span>)</span>
+<span id="cb19-7"><a href=""></a></span>
+<span id="cb19-8"><a href=""></a><span class="co"># Rounding the decimel numbers</span></span>
+<span id="cb19-9"><a href=""></a>data <span class="ot">=</span> data <span class="sc">|&gt;</span></span>
+<span id="cb19-10"><a href=""></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">all_of</span>(<span class="fu">c</span>(<span class="st">"DeviceType"</span>)), round, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="correlation-test" class="slide level2" data-number="5.7">
+<h2><span class="header-section-number">5.7</span> Correlation test</h2>
+<p>A correlation test was used to measure the strength and direction of the relationship between the variables, helping us to determine how changes in each parameter are associated with changes in the target variable (course completion)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="co">#Calculate correlation for each course category between target variable</span></span>
+<span id="cb20-2"><a href=""></a><span class="co">#(course completion) and the rest of the variables</span></span>
+<span id="cb20-3"><a href=""></a>cor_with_p <span class="ot">=</span> data <span class="sc">|&gt;</span></span>
+<span id="cb20-4"><a href=""></a>  <span class="fu">group_by</span>(CourseCategory) <span class="sc">|&gt;</span></span>
+<span id="cb20-5"><a href=""></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">c</span>(TimeSpentOnCourse, NumberOfVideosWatched, </span>
+<span id="cb20-6"><a href=""></a>                     NumberOfQuizzesTaken, QuizScores,DeviceType, CompletionRate), </span>
+<span id="cb20-7"><a href=""></a>                   <span class="sc">~</span> <span class="fu">list</span>(<span class="at">correlation =</span> <span class="fu">cor</span>(.x, CourseCompletion),</span>
+<span id="cb20-8"><a href=""></a>                          <span class="at">p_value =</span> <span class="fu">cor.test</span>(.x, CourseCompletion)<span class="sc">$</span>p.value))) <span class="sc">|&gt;</span></span>
+<span id="cb20-9"><a href=""></a>  <span class="fu">unnest</span>(<span class="at">cols =</span> <span class="fu">c</span>(TimeSpentOnCourse, NumberOfVideosWatched, </span>
+<span id="cb20-10"><a href=""></a>                  NumberOfQuizzesTaken, QuizScores, CompletionRate, DeviceType))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="correlation-test-visualization" class="slide level2" data-number="5.8">
+<h2><span class="header-section-number">5.8</span> Correlation test visualization</h2>
+<p>Next, we wanted to visualize the correlation so it would be easier to see which parameter in each course category has the highest correlation with course completion (the darker the shade- the higher the correlation is):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="co"># Create the correlation table </span></span>
+<span id="cb21-2"><a href=""></a>cor_table <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb21-3"><a href=""></a>  <span class="at">CourseCategory =</span> <span class="fu">c</span>(<span class="st">"Arts"</span>, <span class="st">"Business"</span>, <span class="st">"Health"</span>, <span class="st">"Programming"</span>, <span class="st">"Science"</span>),</span>
+<span id="cb21-4"><a href=""></a>  <span class="at">TimeSpentOnCourse =</span> <span class="fu">c</span>(<span class="fl">0.184</span>, <span class="fl">0.220</span>, <span class="fl">0.160</span>, <span class="fl">0.175</span>, <span class="fl">0.198</span>),</span>
+<span id="cb21-5"><a href=""></a>  <span class="at">NumberOfVideosWatched =</span> <span class="fu">c</span>(<span class="fl">0.248</span>, <span class="fl">0.241</span>, <span class="fl">0.224</span>, <span class="fl">0.194</span>, <span class="fl">0.265</span>),</span>
+<span id="cb21-6"><a href=""></a>  <span class="at">NumberOfQuizzesTaken =</span> <span class="fu">c</span>(<span class="fl">0.335</span>, <span class="fl">0.276</span>, <span class="fl">0.274</span>, <span class="fl">0.261</span>, <span class="fl">0.284</span>),</span>
+<span id="cb21-7"><a href=""></a>  <span class="at">QuizScores =</span> <span class="fu">c</span>(<span class="fl">0.315</span>, <span class="fl">0.316</span>, <span class="fl">0.311</span>, <span class="fl">0.302</span>, <span class="fl">0.278</span>),</span>
+<span id="cb21-8"><a href=""></a>  <span class="at">CompletionRate =</span> <span class="fu">c</span>(<span class="fl">0.303</span>, <span class="fl">0.328</span>, <span class="fl">0.346</span>, <span class="fl">0.371</span>, <span class="fl">0.314</span>),</span>
+<span id="cb21-9"><a href=""></a>  <span class="at">DeviceType =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.022</span>, <span class="sc">-</span><span class="fl">0.022</span>, <span class="sc">-</span><span class="fl">0.022</span>, <span class="fl">0.032</span>, <span class="fl">0.019</span>)</span>
+<span id="cb21-10"><a href=""></a>)  </span>
+<span id="cb21-11"><a href=""></a></span>
+<span id="cb21-12"><a href=""></a><span class="co"># Function to create green shades based on values</span></span>
+<span id="cb21-13"><a href=""></a>green_shades <span class="ot">=</span> <span class="cf">function</span>(values) {</span>
+<span id="cb21-14"><a href=""></a>  green_palette <span class="ot">=</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"#e6ffe6"</span>, <span class="st">"#006400"</span>))(<span class="dv">100</span>) </span>
+<span id="cb21-15"><a href=""></a>  green_palette[<span class="fu">as.numeric</span>(<span class="fu">cut</span>(values, <span class="at">breaks =</span> <span class="dv">100</span>))]</span>
+<span id="cb21-16"><a href=""></a>}</span>
+<span id="cb21-17"><a href=""></a></span>
+<span id="cb21-18"><a href=""></a><span class="co"># Apply green shades to each numeric column individually</span></span>
+<span id="cb21-19"><a href=""></a>cor_table <span class="sc">|&gt;</span></span>
+<span id="cb21-20"><a href=""></a>  <span class="fu">kbl</span>() <span class="sc">|&gt;</span></span>
+<span id="cb21-21"><a href=""></a>  <span class="fu">kable_styling</span>(</span>
+<span id="cb21-22"><a href=""></a>    <span class="at">full_width =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb21-23"><a href=""></a>    <span class="at">font_size =</span> <span class="dv">17</span>,  </span>
+<span id="cb21-24"><a href=""></a>    <span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>)</span>
+<span id="cb21-25"><a href=""></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb21-26"><a href=""></a>  <span class="fu">column_spec</span>(<span class="dv">2</span>, <span class="at">background =</span> <span class="fu">green_shades</span>(cor_table<span class="sc">$</span>TimeSpentOnCourse)) <span class="sc">|&gt;</span></span>
+<span id="cb21-27"><a href=""></a>  <span class="fu">column_spec</span>(<span class="dv">3</span>, <span class="at">background =</span> <span class="fu">green_shades</span>(cor_table<span class="sc">$</span>NumberOfVideosWatched)) <span class="sc">|&gt;</span></span>
+<span id="cb21-28"><a href=""></a>  <span class="fu">column_spec</span>(<span class="dv">4</span>, <span class="at">background =</span> <span class="fu">green_shades</span>(cor_table<span class="sc">$</span>NumberOfQuizzesTaken)) <span class="sc">|&gt;</span></span>
+<span id="cb21-29"><a href=""></a>  <span class="fu">column_spec</span>(<span class="dv">5</span>, <span class="at">background =</span> <span class="fu">green_shades</span>(cor_table<span class="sc">$</span>QuizScores)) <span class="sc">|&gt;</span></span>
+<span id="cb21-30"><a href=""></a>  <span class="fu">column_spec</span>(<span class="dv">6</span>, <span class="at">background =</span> <span class="fu">green_shades</span>(cor_table<span class="sc">$</span>CompletionRate)) <span class="sc">|&gt;</span></span>
+<span id="cb21-31"><a href=""></a>  <span class="fu">column_spec</span>(<span class="dv">7</span>, <span class="at">background =</span> <span class="fu">green_shades</span>(cor_table<span class="sc">$</span>DeviceType)) <span class="sc">|&gt;</span></span>
+<span id="cb21-32"><a href=""></a>  <span class="fu">column_spec</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>, <span class="at">width =</span> <span class="st">"9em"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="correlation-matrices" class="slide level2" data-number="5.9">
+<h2><span class="header-section-number">5.9</span> Correlation matrices</h2>
+<p>Additionally, we checked the correlations results between all variables to to gain a deeper understanding of the relationships between them:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a><span class="co">#A loop for the 5 matrices</span></span>
+<span id="cb22-2"><a href=""></a><span class="co">#Matrices Visualization</span></span>
+<span id="cb22-3"><a href=""></a><span class="co"># plotting area</span></span>
+<span id="cb22-4"><a href=""></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>))</span>
+<span id="cb22-5"><a href=""></a></span>
+<span id="cb22-6"><a href=""></a><span class="cf">for</span> (category <span class="cf">in</span> <span class="fu">unique</span>(data<span class="sc">$</span>CourseCategory)) {</span>
+<span id="cb22-7"><a href=""></a>  <span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Correlation Matrix for:"</span>, category, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb22-8"><a href=""></a>  </span>
+<span id="cb22-9"><a href=""></a>  <span class="co"># Filter</span></span>
+<span id="cb22-10"><a href=""></a>  category_data <span class="ot">=</span> data <span class="sc">|&gt;</span></span>
+<span id="cb22-11"><a href=""></a>    <span class="fu">filter</span>(CourseCategory <span class="sc">==</span> category) <span class="sc">|&gt;</span></span>
+<span id="cb22-12"><a href=""></a>    <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb22-13"><a href=""></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(TimeSpentOnCourse, NumberOfVideosWatched, </span>
+<span id="cb22-14"><a href=""></a>           NumberOfQuizzesTaken, QuizScores, </span>
+<span id="cb22-15"><a href=""></a>           CompletionRate,DeviceType, CourseCompletion)</span>
+<span id="cb22-16"><a href=""></a>  </span>
+<span id="cb22-17"><a href=""></a>  <span class="co"># Calculate correlation matrix</span></span>
+<span id="cb22-18"><a href=""></a>  corr_matrix <span class="ot">=</span> <span class="fu">cor</span>(category_data)</span>
+<span id="cb22-19"><a href=""></a>  </span>
+<span id="cb22-20"><a href=""></a>  <span class="co"># adding values and colors</span></span>
+<span id="cb22-21"><a href=""></a>  <span class="fu">corrplot</span>(corr_matrix, <span class="at">method =</span> <span class="st">"color"</span>, </span>
+<span id="cb22-22"><a href=""></a>           <span class="at">addCoef.col =</span> <span class="st">"black"</span>, <span class="co"># Add correlation coefficient values in black</span></span>
+<span id="cb22-23"><a href=""></a>           <span class="at">number.cex =</span> <span class="dv">1</span>, <span class="co"># Correlation number size</span></span>
+<span id="cb22-24"><a href=""></a>           <span class="at">tl.cex =</span> <span class="fl">0.8</span>, <span class="co"># Text label size</span></span>
+<span id="cb22-25"><a href=""></a>           <span class="at">tl.col =</span> <span class="st">"black"</span>, <span class="co"># text labels black</span></span>
+<span id="cb22-26"><a href=""></a>           <span class="at">title =</span> category, </span>
+<span id="cb22-27"><a href=""></a>           <span class="at">cl.cex =</span> <span class="fl">0.8</span>, <span class="co"># legend size</span></span>
+<span id="cb22-28"><a href=""></a>           <span class="at">col =</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"white"</span>, <span class="st">"purple"</span>))(<span class="dv">200</span>)) </span>
+<span id="cb22-29"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="final_project_files/figure-revealjs/unnamed-chunk-17-1.png" width="960" class="r-stretch"></section>
+<section id="shapiro-wilk-normality-test" class="slide level2" data-number="5.10">
+<h2><span class="header-section-number">5.10</span> Shapiro-Wilk normality test</h2>
+<p>For examining normal distribution per parameter within each course category, we used the <strong>Shapiro-Wilk normality test</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="co">#all of the results are &lt; 0.05, meaning none of them follow a normal distribution</span></span>
+<span id="cb23-2"><a href=""></a><span class="co"># List of numeric columns to test</span></span>
+<span id="cb23-3"><a href=""></a>numeric_columns <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"TimeSpentOnCourse"</span>, <span class="st">"NumberOfVideosWatched"</span>, </span>
+<span id="cb23-4"><a href=""></a>                    <span class="st">"NumberOfQuizzesTaken"</span>, <span class="st">"QuizScores"</span>, </span>
+<span id="cb23-5"><a href=""></a>                    <span class="st">"CompletionRate"</span>, <span class="st">"DeviceType"</span>, <span class="st">"CourseCompletion"</span>)</span>
+<span id="cb23-6"><a href=""></a></span>
+<span id="cb23-7"><a href=""></a><span class="co"># Loop through each course category</span></span>
+<span id="cb23-8"><a href=""></a><span class="cf">for</span> (category <span class="cf">in</span> <span class="fu">unique</span>(data<span class="sc">$</span>CourseCategory)) {</span>
+<span id="cb23-9"><a href=""></a>  <span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Normality Tests for:"</span>, category, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb23-10"><a href=""></a>  </span>
+<span id="cb23-11"><a href=""></a>  <span class="co"># Filter data for the current category</span></span>
+<span id="cb23-12"><a href=""></a>  category_data <span class="ot">=</span> data <span class="sc">|&gt;</span></span>
+<span id="cb23-13"><a href=""></a>    <span class="fu">filter</span>(CourseCategory <span class="sc">==</span> category) <span class="sc">|&gt;</span></span>
+<span id="cb23-14"><a href=""></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">all_of</span>(numeric_columns))  <span class="co"># Select only numeric columns</span></span>
+<span id="cb23-15"><a href=""></a>  </span>
+<span id="cb23-16"><a href=""></a>  <span class="co"># Apply Shapiro-Wilk test to each numeric column</span></span>
+<span id="cb23-17"><a href=""></a>  <span class="cf">for</span> (col <span class="cf">in</span> numeric_columns) {</span>
+<span id="cb23-18"><a href=""></a>    <span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Column:"</span>, col, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb23-19"><a href=""></a>    shapiro_result <span class="ot">=</span> <span class="fu">shapiro.test</span>(category_data[[col]])</span>
+<span id="cb23-20"><a href=""></a>    <span class="fu">print</span>(shapiro_result)</span>
+<span id="cb23-21"><a href=""></a>  }</span>
+<span id="cb23-22"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Creating a data frame to display the results:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a>data_fm <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb24-2"><a href=""></a>  <span class="st">"Course category"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Arts"</span>, <span class="st">"Business"</span>, <span class="st">"Health"</span>, <span class="st">"Programming"</span>, <span class="st">"Science"</span>),</span>
+<span id="cb24-3"><a href=""></a>  <span class="st">"Time spent on course"</span> <span class="ot">=</span> <span class="st">"P-value &lt; 0.05"</span>,</span>
+<span id="cb24-4"><a href=""></a>  <span class="st">"Number of videos watched"</span> <span class="ot">=</span> <span class="st">"P-value &lt; 0.05"</span>,</span>
+<span id="cb24-5"><a href=""></a>  <span class="st">"Number of quizzes taken"</span> <span class="ot">=</span> <span class="st">"P-value &lt; 0.05"</span>,</span>
+<span id="cb24-6"><a href=""></a>  <span class="st">"Quiz scores"</span> <span class="ot">=</span> <span class="st">"P-value &lt; 0.05"</span>,</span>
+<span id="cb24-7"><a href=""></a>  <span class="st">"Completion rate"</span> <span class="ot">=</span> <span class="st">"P-value &lt; 0.05"</span>,</span>
+<span id="cb24-8"><a href=""></a>  <span class="st">"Device Type"</span> <span class="ot">=</span> <span class="st">"P-value &lt; 0.05"</span>,</span>
+<span id="cb24-9"><a href=""></a>  <span class="st">"Course completion"</span> <span class="ot">=</span> <span class="st">"P-value &lt; 0.05"</span></span>
+<span id="cb24-10"><a href=""></a>)</span>
+<span id="cb24-11"><a href=""></a></span>
+<span id="cb24-12"><a href=""></a><span class="co"># Create the table </span></span>
+<span id="cb24-13"><a href=""></a>data_fm <span class="sc">|&gt;</span></span>
+<span id="cb24-14"><a href=""></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">align =</span> <span class="st">'c'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb24-15"><a href=""></a>  <span class="fu">kable_styling</span>(</span>
+<span id="cb24-16"><a href=""></a>    <span class="at">full_width =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb24-17"><a href=""></a>    <span class="at">font_size =</span> <span class="dv">14</span>,  </span>
+<span id="cb24-18"><a href=""></a>    <span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>)</span>
+<span id="cb24-19"><a href=""></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb24-20"><a href=""></a>  <span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">" "</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">"Parameter"</span> <span class="ot">=</span> <span class="dv">7</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb24-21"><a href=""></a>  <span class="fu">column_spec</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">8</span>, <span class="at">width =</span> <span class="st">"9em"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="histogram-plotting" class="slide level2" data-number="5.11">
+<h2><span class="header-section-number">5.11</span> Histogram plotting</h2>
+<p>Additionally, we plotted histograms to further inspect the data distribution’s type:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a><span class="co"># Pivot the data to long format for easier plotting with ggplot2</span></span>
+<span id="cb25-2"><a href=""></a>data_long <span class="ot">=</span> data <span class="sc">|&gt;</span></span>
+<span id="cb25-3"><a href=""></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(CourseCategory, <span class="fu">all_of</span>(numeric_columns)) <span class="sc">|&gt;</span></span>
+<span id="cb25-4"><a href=""></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">all_of</span>(numeric_columns), <span class="at">names_to =</span> <span class="st">"Variable"</span>, <span class="at">values_to =</span> <span class="st">"Value"</span>)</span>
+<span id="cb25-5"><a href=""></a></span>
+<span id="cb25-6"><a href=""></a><span class="co"># Create histograms for each variable and course category</span></span>
+<span id="cb25-7"><a href=""></a>hist <span class="ot">=</span> <span class="fu">ggplot</span>(data_long, <span class="fu">aes</span>(<span class="at">x =</span> Value)) <span class="sc">+</span></span>
+<span id="cb25-8"><a href=""></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">"purple"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb25-9"><a href=""></a>  <span class="fu">facet_grid</span>(CourseCategory <span class="sc">~</span> Variable, <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
+<span id="cb25-10"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histograms of Numeric Variables by Course Category"</span>,</span>
+<span id="cb25-11"><a href=""></a>       <span class="at">x =</span> <span class="st">"Value"</span>,</span>
+<span id="cb25-12"><a href=""></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="sc">+</span></span>
+<span id="cb25-13"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="logistic-regression-model" class="slide level2" data-number="5.12">
+<h2><span class="header-section-number">5.12</span> Logistic regression model</h2>
+<p>The following code shows a logistic regression model to predict whether a course will be completed based on the parameters and then summarizes the model, showing how each parameter influences the likelihood of course completion. The summary includes statistical details like coefficients, significance levels, and model fit measures.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a><span class="co"># logistic regression model</span></span>
+<span id="cb26-2"><a href=""></a>logistic_model <span class="ot">=</span> <span class="fu">glm</span>(CourseCompletion <span class="sc">~</span> CourseCategory <span class="sc">+</span> TimeSpentOnCourse <span class="sc">+</span> </span>
+<span id="cb26-3"><a href=""></a>                        NumberOfVideosWatched <span class="sc">+</span> NumberOfQuizzesTaken <span class="sc">+</span> </span>
+<span id="cb26-4"><a href=""></a>                        QuizScores <span class="sc">+</span> CompletionRate, </span>
+<span id="cb26-5"><a href=""></a>                      <span class="at">data =</span> data, <span class="at">family =</span> binomial)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="predicted-probabilities-plot" class="slide level2" data-number="5.13">
+<h2><span class="header-section-number">5.13</span> Predicted probabilities plot</h2>
+<p>A plot showing the predicted probabilities of course completion for different course categories, based on Fridman model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a><span class="co"># Predict probabilities based on the model</span></span>
+<span id="cb27-2"><a href=""></a>data<span class="sc">$</span>predicted_prob <span class="ot">=</span> <span class="fu">predict</span>(logistic_model, <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb27-3"><a href=""></a></span>
+<span id="cb27-4"><a href=""></a><span class="co"># Visualize</span></span>
+<span id="cb27-5"><a href=""></a>predict_p <span class="ot">=</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> CourseCategory, <span class="at">y =</span> predicted_prob)) <span class="sc">+</span></span>
+<span id="cb27-6"><a href=""></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb27-7"><a href=""></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Predicted Probability of Course Completion"</span>,</span>
+<span id="cb27-8"><a href=""></a>       <span class="at">x =</span> <span class="st">"Course Category"</span>,</span>
+<span id="cb27-9"><a href=""></a>       <span class="at">title =</span> <span class="st">"Predicted Probability by Course Category"</span>,</span>
+<span id="cb27-10"><a href=""></a>       <span class="at">subtitle =</span> <span class="st">"Logistic Regression Model on Course Completion"</span>) <span class="sc">+</span></span>
+<span id="cb27-11"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="forest-plot" class="slide level2" data-number="5.14">
+<h2><span class="header-section-number">5.14</span> Forest Plot</h2>
+<p>A forest plot showing the odds ratios with 95% confidence intervals for each predictor in the logistic regression model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a><span class="co"># tidy version of the model results</span></span>
+<span id="cb28-2"><a href=""></a>tidy_model <span class="ot">=</span> <span class="fu">tidy</span>(logistic_model, <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">exp =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb28-3"><a href=""></a></span>
+<span id="cb28-4"><a href=""></a><span class="co"># Filter out the intercept for a cleaner plot</span></span>
+<span id="cb28-5"><a href=""></a>tidy_model <span class="ot">=</span> tidy_model[tidy_model<span class="sc">$</span>term <span class="sc">!=</span> <span class="st">"(Intercept)"</span>, ]</span>
+<span id="cb28-6"><a href=""></a></span>
+<span id="cb28-7"><a href=""></a><span class="co"># Plot the odds ratios</span></span>
+<span id="cb28-8"><a href=""></a>prediced_a <span class="ot">=</span> <span class="fu">ggplot</span>(tidy_model, <span class="fu">aes</span>(<span class="at">x =</span> term, <span class="at">y =</span> estimate)) <span class="sc">+</span></span>
+<span id="cb28-9"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb28-10"><a href=""></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high), <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb28-11"><a href=""></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span>  <span class="co">#for better readability</span></span>
+<span id="cb28-12"><a href=""></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Odds Ratio"</span>, <span class="at">x =</span> <span class="st">"Predictor"</span>,</span>
+<span id="cb28-13"><a href=""></a>       <span class="at">title =</span> <span class="st">"Odds Ratios with 95% Confidence Intervals"</span>,</span>
+<span id="cb28-14"><a href=""></a>       <span class="at">subtitle =</span> <span class="st">"Logistic Regression Model on Course Completion"</span>) <span class="sc">+</span></span>
+<span id="cb28-15"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="chi--test-device-type-and-course-completion" class="slide level2" data-number="5.15">
+<h2><span class="header-section-number">5.15</span> Chi- Test: Device Type and Course Completion</h2>
+<p>We chose to examine the <strong>Device Type</strong> parameter separately since it is a binary variable, using Chi- Test. This will determine whether there is a significant association between <strong>Course Completion</strong> and <strong>Device Type</strong> by comparing the observed frequencies in each category to the expected frequencies if the variables were independent.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>chi_test_results <span class="ot">=</span> data <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href=""></a>  <span class="fu">group_by</span>(CourseCategory) <span class="sc">|&gt;</span></span>
+<span id="cb29-3"><a href=""></a>  <span class="fu">summarise</span>(</span>
+<span id="cb29-4"><a href=""></a>    <span class="at">Chi_Square_Test =</span> <span class="fu">list</span>(<span class="fu">chisq.test</span>(<span class="fu">table</span>(DeviceType, CourseCompletion)))</span>
+<span id="cb29-5"><a href=""></a>  )</span>
+<span id="cb29-6"><a href=""></a></span>
+<span id="cb29-7"><a href=""></a><span class="co"># Display the p-values for each course category</span></span>
+<span id="cb29-8"><a href=""></a>results <span class="ot">=</span>chi_test_results <span class="sc">|&gt;</span></span>
+<span id="cb29-9"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">p_value =</span> <span class="fu">sapply</span>(Chi_Square_Test, <span class="cf">function</span>(x) x<span class="sc">$</span>p.value)) <span class="sc">|&gt;</span></span>
+<span id="cb29-10"><a href=""></a>  dplyr<span class="sc">::</span> <span class="fu">select</span>(CourseCategory, p_value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Chi- Test visualization:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a><span class="fu">ggplot</span>(results, <span class="fu">aes</span>(<span class="at">x =</span> CourseCategory, <span class="at">y =</span> p_value)) <span class="sc">+</span></span>
+<span id="cb30-2"><a href=""></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"skyblue"</span>) <span class="sc">+</span></span>
+<span id="cb30-3"><a href=""></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.05</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span>  <span class="co"># Red line at 0.05</span></span>
+<span id="cb30-4"><a href=""></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(p_value, <span class="dv">3</span>)), <span class="at">vjust =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb30-5"><a href=""></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb30-6"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Chi-Square Test p-values by Course Category"</span>,</span>
+<span id="cb30-7"><a href=""></a>       <span class="at">x =</span> <span class="st">"Course Category"</span>,</span>
+<span id="cb30-8"><a href=""></a>       <span class="at">y =</span> <span class="st">"p-value"</span>) <span class="sc">+</span></span>
+<span id="cb30-9"><a href=""></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="final_project_files/figure-revealjs/unnamed-chunk-25-1.png" width="960" class="r-stretch"></section>
+<section id="calculating-odds-ratio-by-device-type-and-course-completion" class="slide level2" data-number="5.16">
+<h2><span class="header-section-number">5.16</span> Calculating Odds Ratio by Device Type and Course Completion</h2>
+<p>The odds ratio is a measure of the likelihood of course completion associated with using a smartphone compared to a computer. An odds ratio greater than 1 suggests that users on smartphones have higher odds of completing a course compared to those on computers. Conversely, an odds ratio less than 1 indicates that smartphone users have lower odds of completing a course relative to computer users.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a>health_data_ratio <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(CourseCategory <span class="sc">==</span> <span class="st">"Health"</span>)</span>
+<span id="cb31-2"><a href=""></a>model_health <span class="ot">&lt;-</span> <span class="fu">glm</span>(CourseCompletion <span class="sc">~</span> DeviceType, <span class="at">data =</span> health_data_ratio, <span class="at">family =</span> binomial)</span>
+<span id="cb31-3"><a href=""></a></span>
+<span id="cb31-4"><a href=""></a></span>
+<span id="cb31-5"><a href=""></a>odds_ratio_health <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">coef</span>(model_health))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a><span class="co"># Business:</span></span>
+<span id="cb32-2"><a href=""></a>Business_data_ratio <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(CourseCategory <span class="sc">==</span> <span class="st">"Business"</span>)</span>
+<span id="cb32-3"><a href=""></a></span>
+<span id="cb32-4"><a href=""></a></span>
+<span id="cb32-5"><a href=""></a>model_business <span class="ot">&lt;-</span> <span class="fu">glm</span>(CourseCompletion <span class="sc">~</span> DeviceType, <span class="at">data =</span> Business_data_ratio, <span class="at">family =</span> binomial)</span>
+<span id="cb32-6"><a href=""></a></span>
+<span id="cb32-7"><a href=""></a></span>
+<span id="cb32-8"><a href=""></a></span>
+<span id="cb32-9"><a href=""></a>odds_ratio_business <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">coef</span>(model_business))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a><span class="do">## Arts:</span></span>
+<span id="cb33-2"><a href=""></a></span>
+<span id="cb33-3"><a href=""></a>arts_data_ratio <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(CourseCategory <span class="sc">==</span> <span class="st">"Arts"</span>)</span>
+<span id="cb33-4"><a href=""></a></span>
+<span id="cb33-5"><a href=""></a></span>
+<span id="cb33-6"><a href=""></a>model_arts <span class="ot">&lt;-</span> <span class="fu">glm</span>(CourseCompletion <span class="sc">~</span> DeviceType, <span class="at">data =</span> arts_data_ratio, <span class="at">family =</span> binomial)</span>
+<span id="cb33-7"><a href=""></a></span>
+<span id="cb33-8"><a href=""></a></span>
+<span id="cb33-9"><a href=""></a></span>
+<span id="cb33-10"><a href=""></a>odds_ratio_arts <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">coef</span>(model_arts))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a><span class="do">## Programming: </span></span>
+<span id="cb34-2"><a href=""></a></span>
+<span id="cb34-3"><a href=""></a>programming_data_ratio <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(CourseCategory <span class="sc">==</span> <span class="st">"Programming"</span>)</span>
+<span id="cb34-4"><a href=""></a></span>
+<span id="cb34-5"><a href=""></a></span>
+<span id="cb34-6"><a href=""></a>model_programming <span class="ot">&lt;-</span> <span class="fu">glm</span>(CourseCompletion <span class="sc">~</span> DeviceType, <span class="at">data =</span> programming_data_ratio, <span class="at">family =</span> binomial)</span>
+<span id="cb34-7"><a href=""></a></span>
+<span id="cb34-8"><a href=""></a></span>
+<span id="cb34-9"><a href=""></a></span>
+<span id="cb34-10"><a href=""></a>odds_ratio_programming <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">coef</span>(model_programming))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href=""></a><span class="do">## Science:</span></span>
+<span id="cb35-2"><a href=""></a></span>
+<span id="cb35-3"><a href=""></a>science_data_ratio <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(CourseCategory <span class="sc">==</span> <span class="st">"Science"</span>)</span>
+<span id="cb35-4"><a href=""></a></span>
+<span id="cb35-5"><a href=""></a></span>
+<span id="cb35-6"><a href=""></a>model_science <span class="ot">&lt;-</span> <span class="fu">glm</span>(CourseCompletion <span class="sc">~</span> DeviceType, <span class="at">data =</span> science_data_ratio, <span class="at">family =</span> binomial)</span>
+<span id="cb35-7"><a href=""></a></span>
+<span id="cb35-8"><a href=""></a></span>
+<span id="cb35-9"><a href=""></a></span>
+<span id="cb35-10"><a href=""></a>odds_ratio_science <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">coef</span>(model_science))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="percentage-of-course-completion-by-category" class="slide level2" data-number="5.17">
+<h2><span class="header-section-number">5.17</span> Percentage of Course completion by category</h2>
+<p>We calculated the Course Completion percentage across all course categories</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a>data_health <span class="ot">=</span> data<span class="sc">|&gt;</span></span>
+<span id="cb36-2"><a href=""></a>  <span class="fu">filter</span>(CourseCategory <span class="sc">==</span> <span class="st">'Health'</span>)</span>
+<span id="cb36-3"><a href=""></a></span>
+<span id="cb36-4"><a href=""></a>data_arts <span class="ot">=</span> data <span class="sc">|&gt;</span></span>
+<span id="cb36-5"><a href=""></a>  <span class="fu">filter</span>(CourseCategory <span class="sc">==</span> <span class="st">'Arts'</span>)</span>
+<span id="cb36-6"><a href=""></a></span>
+<span id="cb36-7"><a href=""></a>data_science <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb36-8"><a href=""></a>  <span class="fu">filter</span>(CourseCategory<span class="sc">==</span> <span class="st">'Science'</span>)</span>
+<span id="cb36-9"><a href=""></a></span>
+<span id="cb36-10"><a href=""></a>data_Programming <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb36-11"><a href=""></a>  <span class="fu">filter</span>(CourseCategory <span class="sc">==</span> <span class="st">'Programming'</span>)</span>
+<span id="cb36-12"><a href=""></a></span>
+<span id="cb36-13"><a href=""></a>data_business <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb36-14"><a href=""></a>  <span class="fu">filter</span>(CourseCategory <span class="sc">==</span> <span class="st">'Business'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a>calculate_completion <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
+<span id="cb37-2"><a href=""></a>  completion <span class="ot">&lt;-</span> <span class="fu">sum</span>(data<span class="sc">$</span>CourseCompletion <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="dv">1500</span></span>
+<span id="cb37-3"><a href=""></a>  <span class="fu">return</span>(completion)</span>
+<span id="cb37-4"><a href=""></a>}</span>
+<span id="cb37-5"><a href=""></a></span>
+<span id="cb37-6"><a href=""></a><span class="co"># Calculate completion rates for each category</span></span>
+<span id="cb37-7"><a href=""></a>completion_health <span class="ot">&lt;-</span> <span class="fu">calculate_completion</span>(data_health)</span>
+<span id="cb37-8"><a href=""></a>completion_science <span class="ot">&lt;-</span> <span class="fu">calculate_completion</span>(data_science)</span>
+<span id="cb37-9"><a href=""></a>completion_Programming <span class="ot">&lt;-</span> <span class="fu">calculate_completion</span>(data_Programming)</span>
+<span id="cb37-10"><a href=""></a>completion_arts <span class="ot">&lt;-</span> <span class="fu">calculate_completion</span>(data_arts)</span>
+<span id="cb37-11"><a href=""></a>completion_business <span class="ot">&lt;-</span> <span class="fu">calculate_completion</span>(data_business)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a>completion_rates <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb38-2"><a href=""></a>  <span class="at">course =</span> <span class="fu">c</span>(<span class="st">"Health"</span>, <span class="st">"Science"</span>, <span class="st">"Programming"</span>, <span class="st">"Arts"</span>, <span class="st">"Business"</span>),</span>
+<span id="cb38-3"><a href=""></a>  <span class="at">completion_rate =</span> <span class="fu">c</span>(completion_health, </span>
+<span id="cb38-4"><a href=""></a>                      completion_science, </span>
+<span id="cb38-5"><a href=""></a>                      completion_Programming,</span>
+<span id="cb38-6"><a href=""></a>                      completion_arts,</span>
+<span id="cb38-7"><a href=""></a>                      completion_business))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a>completion_rates_per <span class="ot">=</span> completion_rates <span class="sc">%&gt;%</span></span>
+<span id="cb39-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">completion_rate =</span> completion_rate <span class="sc">*</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a><span class="co"># Create the bar chart</span></span>
+<span id="cb40-2"><a href=""></a><span class="fu">ggplot</span>(completion_rates_per, <span class="fu">aes</span>(<span class="at">x =</span> course, <span class="at">y =</span> completion_rate, <span class="at">fill =</span> course)) <span class="sc">+</span></span>
+<span id="cb40-3"><a href=""></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">'identity'</span>) <span class="sc">+</span></span>
+<span id="cb40-4"><a href=""></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(completion_rate, <span class="dv">1</span>)), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="fl">3.5</span>) <span class="sc">+</span></span>
+<span id="cb40-5"><a href=""></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(<span class="at">scale =</span> <span class="dv">1</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb40-6"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">" Course Completion by Category"</span>,</span>
+<span id="cb40-7"><a href=""></a>       <span class="at">x =</span> <span class="st">"Course Category"</span>,</span>
+<span id="cb40-8"><a href=""></a>       <span class="at">y =</span> <span class="st">"completion of course (pass/not pass) (%)"</span>) <span class="sc">+</span></span>
+<span id="cb40-9"><a href=""></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb40-10"><a href=""></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)<span class="sc">+</span></span>
+<span id="cb40-11"><a href=""></a>  <span class="fu">theme</span>(</span>
+<span id="cb40-12"><a href=""></a>    <span class="at">panel.spacing =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"lines"</span>),  <span class="co"># Add space between panels</span></span>
+<span id="cb40-13"><a href=""></a>    <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">size =</span> <span class="dv">1</span>)  <span class="co"># Add border around each panel</span></span>
+<span id="cb40-14"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="mean-by-variables" class="slide level2" data-number="5.18">
+<h2><span class="header-section-number">5.18</span> Mean by Variables</h2>
+<p>Next, We calculated the average of all course categories by variables</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href=""></a>mean_data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb41-2"><a href=""></a>  dplyr<span class="sc">::</span> <span class="fu">select</span> (<span class="sc">-</span>DeviceType, <span class="sc">-</span>CourseCompletion) <span class="sc">%&gt;%</span></span>
+<span id="cb41-3"><a href=""></a>  <span class="fu">group_by</span>(CourseCategory) <span class="sc">%&gt;%</span></span>
+<span id="cb41-4"><a href=""></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb41-5"><a href=""></a></span>
+<span id="cb41-6"><a href=""></a><span class="co"># Pivot data for easier plotting</span></span>
+<span id="cb41-7"><a href=""></a>mean_data_long <span class="ot">&lt;-</span> mean_data <span class="sc">%&gt;%</span></span>
+<span id="cb41-8"><a href=""></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>CourseCategory, <span class="at">names_to =</span> <span class="st">"Variable"</span>, <span class="at">values_to =</span> <span class="st">"Mean"</span>)</span>
+<span id="cb41-9"><a href=""></a></span>
+<span id="cb41-10"><a href=""></a>by_varibles <span class="ot">=</span> <span class="fu">ggplot</span>(mean_data_long, <span class="fu">aes</span>(<span class="at">x =</span> CourseCategory, <span class="at">y =</span> Mean, <span class="at">fill =</span> CourseCategory)) <span class="sc">+</span></span>
+<span id="cb41-11"><a href=""></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb41-12"><a href=""></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(Mean, <span class="dv">2</span>)), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span>  <span class="co"># Add mean values on top of the bars</span></span>
+<span id="cb41-13"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Variable, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb41-14"><a href=""></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb41-15"><a href=""></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb41-16"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mean Comparison Across Categories for Each Variable"</span>, </span>
+<span id="cb41-17"><a href=""></a>       <span class="at">x =</span> <span class="st">"Course Category"</span>, </span>
+<span id="cb41-18"><a href=""></a>       <span class="at">y =</span> <span class="st">"Mean Value"</span>) <span class="sc">+</span></span>
+<span id="cb41-19"><a href=""></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))<span class="sc">+</span></span>
+<span id="cb41-20"><a href=""></a>  <span class="fu">theme</span>(</span>
+<span id="cb41-21"><a href=""></a>    <span class="at">panel.spacing =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"lines"</span>),  <span class="co"># Add space between panels</span></span>
+<span id="cb41-22"><a href=""></a>    <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">size =</span> <span class="dv">1</span>)  <span class="co"># Add border around each panel</span></span>
+<span id="cb41-23"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="percentage-of-users-by-device-type" class="slide level2" data-number="5.19">
+<h2><span class="header-section-number">5.19</span> Percentage of users by Device Type</h2>
+<p>We calculated the percentage of users for each device type within each course category to inspect its influence on course completion:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a>device_data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb42-2"><a href=""></a>      <span class="fu">group_by</span>(CourseCategory, DeviceType) <span class="sc">%&gt;%</span></span>
+<span id="cb42-3"><a href=""></a>      <span class="fu">summarise</span>(<span class="at">UserCount =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb42-4"><a href=""></a>      <span class="fu">ungroup</span>()</span>
+<span id="cb42-5"><a href=""></a>    </span>
+<span id="cb42-6"><a href=""></a>    <span class="co"># Calculate the percentage of users for each device type within each course category</span></span>
+<span id="cb42-7"><a href=""></a>    device_data <span class="ot">&lt;-</span> device_data <span class="sc">%&gt;%</span></span>
+<span id="cb42-8"><a href=""></a>      <span class="fu">group_by</span>(CourseCategory) <span class="sc">%&gt;%</span></span>
+<span id="cb42-9"><a href=""></a>      <span class="fu">mutate</span>(<span class="at">Percentage =</span> (UserCount <span class="sc">/</span> <span class="fu">sum</span>(UserCount)) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb42-10"><a href=""></a>      <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a>    <span class="co"># Create the faceted bar graph</span></span>
+<span id="cb43-2"><a href=""></a>    <span class="fu">ggplot</span>(device_data, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(DeviceType), <span class="at">y =</span> Percentage, <span class="at">fill =</span> <span class="fu">as.factor</span>(DeviceType))) <span class="sc">+</span></span>
+<span id="cb43-3"><a href=""></a>      <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb43-4"><a href=""></a>      <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(<span class="fu">round</span>(Percentage, <span class="dv">1</span>), <span class="st">"%"</span>)), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb43-5"><a href=""></a>      <span class="fu">facet_wrap</span>(<span class="sc">~</span> CourseCategory) <span class="sc">+</span></span>
+<span id="cb43-6"><a href=""></a>      <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>), <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span> </span>
+<span id="cb43-7"><a href=""></a>      <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb43-8"><a href=""></a>      <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Percentage of Users by Device Type Across Course Categories"</span>, </span>
+<span id="cb43-9"><a href=""></a>           <span class="at">x =</span> <span class="st">"Device Type"</span>, </span>
+<span id="cb43-10"><a href=""></a>           <span class="at">y =</span> <span class="st">"Percentage of Users"</span>) <span class="sc">+</span></span>
+<span id="cb43-11"><a href=""></a>      <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb43-12"><a href=""></a>      <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"0"</span> <span class="ot">=</span> <span class="st">"#1f77b4"</span>, <span class="st">"1"</span> <span class="ot">=</span> <span class="st">"#ff7f0e"</span>), </span>
+<span id="cb43-13"><a href=""></a>                        <span class="at">name =</span> <span class="st">"Device Type"</span>,</span>
+<span id="cb43-14"><a href=""></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Device 0"</span>, <span class="st">"Device 1"</span>))<span class="sc">+</span></span>
+<span id="cb43-15"><a href=""></a>      <span class="fu">theme</span>(</span>
+<span id="cb43-16"><a href=""></a>    <span class="at">panel.spacing =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"lines"</span>),  <span class="co"># Add space between panels</span></span>
+<span id="cb43-17"><a href=""></a>    <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">size =</span> <span class="dv">1</span>)  <span class="co"># Add border around each panel</span></span>
+<span id="cb43-18"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="examining-the-relationships-between-different-parameters" class="slide level2" data-number="5.20">
+<h2><span class="header-section-number">5.20</span> Examining the relationships between different parameters</h2>
+<p>We chose a few parameters that we assumed the relationship between them affects <strong>Course Completion</strong> significantly.</p>
+</section>
+<section id="density-calculation" class="slide level2" data-number="5.21">
+<h2><span class="header-section-number">5.21</span> Density calculation</h2>
+<p>we are calculating the density of the points to present only the points that have high density (top 20%) to show the ‘chunks’ of points that are similar to each other, which will hopefully help us to understand the relationship between them and the course completion.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href=""></a>calculate_density <span class="ot">=</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb44-2"><a href=""></a>  dens <span class="ot">=</span> <span class="fu">kde2d</span>(x, y, <span class="at">n =</span> <span class="dv">100</span>)</span>
+<span id="cb44-3"><a href=""></a>  ix <span class="ot">=</span> <span class="fu">findInterval</span>(x, dens<span class="sc">$</span>x)</span>
+<span id="cb44-4"><a href=""></a>  iy <span class="ot">=</span> <span class="fu">findInterval</span>(y, dens<span class="sc">$</span>y)</span>
+<span id="cb44-5"><a href=""></a>  <span class="fu">return</span>(dens<span class="sc">$</span>z[<span class="fu">cbind</span>(ix, iy)])</span>
+<span id="cb44-6"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="time-spent-on-course-compared-to-completion-rate" class="slide level2" data-number="5.22">
+<h2><span class="header-section-number">5.22</span> Time spent on course compared to Completion Rate</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href=""></a><span class="co"># Calculate densities for not completed and completed data</span></span>
+<span id="cb45-2"><a href=""></a>notcompleted1 <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb45-3"><a href=""></a>  <span class="fu">filter</span>(CourseCompletion <span class="sc">==</span> <span class="st">'0'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb45-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">density =</span> <span class="fu">calculate_density</span>(TimeSpentOnCourse, CompletionRate))</span>
+<span id="cb45-5"><a href=""></a></span>
+<span id="cb45-6"><a href=""></a>completed1 <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb45-7"><a href=""></a>  <span class="fu">filter</span>(CourseCompletion <span class="sc">==</span> <span class="st">'1'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb45-8"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">density =</span> <span class="fu">calculate_density</span>(TimeSpentOnCourse, CompletionRate))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href=""></a>highdensity_combined1 <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb46-2"><a href=""></a>  notcompleted1 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Status =</span> <span class="st">"Not Completed"</span>),</span>
+<span id="cb46-3"><a href=""></a>  completed1 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Status =</span> <span class="st">"Completed"</span>)</span>
+<span id="cb46-4"><a href=""></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb46-5"><a href=""></a>  <span class="fu">group_by</span>(CourseCategory, Status) <span class="sc">%&gt;%</span></span>
+<span id="cb46-6"><a href=""></a>  <span class="fu">filter</span>(density <span class="sc">&gt;=</span> <span class="fu">quantile</span>(density, <span class="fl">0.8</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb46-7"><a href=""></a>  dplyr<span class="sc">::</span> <span class="fu">select</span>(CourseCategory, CourseCompletion, TimeSpentOnCourse, CompletionRate, density, Status)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href=""></a><span class="co"># Plot the most dense areas</span></span>
+<span id="cb47-2"><a href=""></a><span class="fu">ggplot</span>(highdensity_combined1, <span class="fu">aes</span>(<span class="at">x =</span> TimeSpentOnCourse, <span class="at">y =</span> CompletionRate, <span class="at">color =</span> Status)) <span class="sc">+</span></span>
+<span id="cb47-3"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb47-4"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> CourseCategory, <span class="at">ncol =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb47-5"><a href=""></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Completed"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"Not Completed"</span> <span class="ot">=</span> <span class="st">"red"</span>)) <span class="sc">+</span></span>
+<span id="cb47-6"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"High-Density Areas by Course Category"</span>,</span>
+<span id="cb47-7"><a href=""></a>       <span class="at">x =</span> <span class="st">"Time Spent on Course"</span>,</span>
+<span id="cb47-8"><a href=""></a>       <span class="at">y =</span> <span class="st">"Completion Rate"</span>,</span>
+<span id="cb47-9"><a href=""></a>       <span class="at">color =</span> <span class="st">"Completion Status"</span>) <span class="sc">+</span></span>
+<span id="cb47-10"><a href=""></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
+<span id="cb47-11"><a href=""></a>  <span class="fu">theme</span>(</span>
+<span id="cb47-12"><a href=""></a>    <span class="at">panel.spacing =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"lines"</span>),  <span class="co"># Add space between panels</span></span>
+<span id="cb47-13"><a href=""></a>    <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">size =</span> <span class="dv">1</span>)  <span class="co"># Add border around each panel</span></span>
+<span id="cb47-14"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="quiz-score-compared-to-completion-rate" class="slide level2" data-number="5.23">
+<h2><span class="header-section-number">5.23</span> Quiz Score compared to Completion Rate</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href=""></a>notcompleted2 <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb48-2"><a href=""></a>  <span class="fu">filter</span>(CourseCompletion <span class="sc">==</span> <span class="st">'0'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb48-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">density =</span> <span class="fu">calculate_density</span>(QuizScores, CompletionRate))</span>
+<span id="cb48-4"><a href=""></a></span>
+<span id="cb48-5"><a href=""></a>completed2 <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb48-6"><a href=""></a>  <span class="fu">filter</span>(CourseCompletion <span class="sc">==</span> <span class="st">'1'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb48-7"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">density =</span> <span class="fu">calculate_density</span>(QuizScores, CompletionRate))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href=""></a>highdensity_combined2 <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb49-2"><a href=""></a>  notcompleted2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Status =</span> <span class="st">"Not Completed"</span>),</span>
+<span id="cb49-3"><a href=""></a>  completed2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Status =</span> <span class="st">"Completed"</span>)</span>
+<span id="cb49-4"><a href=""></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb49-5"><a href=""></a>  <span class="fu">group_by</span>(CourseCategory, Status) <span class="sc">%&gt;%</span></span>
+<span id="cb49-6"><a href=""></a>  <span class="fu">filter</span>(density <span class="sc">&gt;=</span> <span class="fu">quantile</span>(density, <span class="fl">0.8</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb49-7"><a href=""></a>  dplyr<span class="sc">::</span> <span class="fu">select</span>(CourseCategory, CourseCompletion, QuizScores, CompletionRate, density, Status)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href=""></a><span class="co"># Plot the most dense areas</span></span>
+<span id="cb50-2"><a href=""></a><span class="fu">ggplot</span>(highdensity_combined2, <span class="fu">aes</span>(<span class="at">x =</span> QuizScores, <span class="at">y =</span> CompletionRate, <span class="at">color =</span> Status)) <span class="sc">+</span></span>
+<span id="cb50-3"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb50-4"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> CourseCategory, <span class="at">ncol =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb50-5"><a href=""></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Completed"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"Not Completed"</span> <span class="ot">=</span> <span class="st">"red"</span>)) <span class="sc">+</span></span>
+<span id="cb50-6"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"High-Density Areas by Course Category"</span>,</span>
+<span id="cb50-7"><a href=""></a>       <span class="at">x =</span> <span class="st">"Quiz scores"</span>,</span>
+<span id="cb50-8"><a href=""></a>       <span class="at">y =</span> <span class="st">"Completion Rate"</span>,</span>
+<span id="cb50-9"><a href=""></a>       <span class="at">color =</span> <span class="st">"Completion Status"</span>) <span class="sc">+</span></span>
+<span id="cb50-10"><a href=""></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
+<span id="cb50-11"><a href=""></a>  <span class="fu">theme</span>(</span>
+<span id="cb50-12"><a href=""></a>    <span class="at">panel.spacing =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"lines"</span>),  <span class="co"># Add space between panels</span></span>
+<span id="cb50-13"><a href=""></a>    <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">size =</span> <span class="dv">1</span>)  <span class="co"># Add border around each panel</span></span>
+<span id="cb50-14"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="number-of-quiz-taken-compared-to-quiz-score" class="slide level2" data-number="5.24">
+<h2><span class="header-section-number">5.24</span> Number of Quiz Taken compared to Quiz Score</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href=""></a>notcompleted3 <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb51-2"><a href=""></a>  <span class="fu">filter</span>(CourseCompletion <span class="sc">==</span> <span class="st">'0'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb51-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">density =</span> <span class="fu">calculate_density</span>(NumberOfQuizzesTaken, QuizScores))</span>
+<span id="cb51-4"><a href=""></a></span>
+<span id="cb51-5"><a href=""></a>completed3 <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb51-6"><a href=""></a>  <span class="fu">filter</span>(CourseCompletion <span class="sc">==</span> <span class="st">'1'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb51-7"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">density =</span> <span class="fu">calculate_density</span>(NumberOfQuizzesTaken, QuizScores))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href=""></a>highdensity_combined3 <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb52-2"><a href=""></a>  notcompleted3 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Status =</span> <span class="st">"Not Completed"</span>),</span>
+<span id="cb52-3"><a href=""></a>  completed3 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Status =</span> <span class="st">"Completed"</span>)</span>
+<span id="cb52-4"><a href=""></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb52-5"><a href=""></a>  <span class="fu">group_by</span>(CourseCategory, Status) <span class="sc">%&gt;%</span></span>
+<span id="cb52-6"><a href=""></a>  <span class="fu">filter</span>(density <span class="sc">&gt;=</span> <span class="fu">quantile</span>(density, <span class="fl">0.8</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb52-7"><a href=""></a>  dplyr<span class="sc">::</span> <span class="fu">select</span>(CourseCategory, CourseCompletion ,NumberOfQuizzesTaken , QuizScores, density, Status)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href=""></a><span class="co"># Plot the most dense areas</span></span>
+<span id="cb53-2"><a href=""></a><span class="fu">ggplot</span>(highdensity_combined3, <span class="fu">aes</span>(<span class="at">x =</span> NumberOfQuizzesTaken, <span class="at">y =</span> QuizScores, <span class="at">color =</span> Status)) <span class="sc">+</span></span>
+<span id="cb53-3"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb53-4"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> CourseCategory, <span class="at">ncol =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb53-5"><a href=""></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Completed"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"Not Completed"</span> <span class="ot">=</span> <span class="st">"red"</span>)) <span class="sc">+</span></span>
+<span id="cb53-6"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"High-Density Areas by Course Category"</span>,</span>
+<span id="cb53-7"><a href=""></a>       <span class="at">x =</span> <span class="st">"Number Of Quizzes Taken"</span>,</span>
+<span id="cb53-8"><a href=""></a>       <span class="at">y =</span> <span class="st">"Quizzes Scores"</span>,</span>
+<span id="cb53-9"><a href=""></a>       <span class="at">color =</span> <span class="st">"Completion Status"</span>) <span class="sc">+</span></span>
+<span id="cb53-10"><a href=""></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb53-11"><a href=""></a>  <span class="fu">theme</span>(</span>
+<span id="cb53-12"><a href=""></a>    <span class="at">panel.spacing =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"lines"</span>),  <span class="co"># Add space between panels</span></span>
+<span id="cb53-13"><a href=""></a>    <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">size =</span> <span class="dv">1</span>)  <span class="co"># Add border around each panel</span></span>
+<span id="cb53-14"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="time-spent-on-course-compared-to-quiz-score" class="slide level2" data-number="5.25">
+<h2><span class="header-section-number">5.25</span> Time spent on course compared to Quiz Score</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href=""></a>notcompleted4 <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb54-2"><a href=""></a>  <span class="fu">filter</span>(CourseCompletion <span class="sc">==</span> <span class="st">'0'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb54-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">density =</span> <span class="fu">calculate_density</span>(TimeSpentOnCourse, QuizScores))</span>
+<span id="cb54-4"><a href=""></a></span>
+<span id="cb54-5"><a href=""></a>completed4 <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb54-6"><a href=""></a>  <span class="fu">filter</span>(CourseCompletion <span class="sc">==</span> <span class="st">'1'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb54-7"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">density =</span> <span class="fu">calculate_density</span>(TimeSpentOnCourse, QuizScores))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href=""></a>highdensity_combined4 <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb55-2"><a href=""></a>  notcompleted4 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Status =</span> <span class="st">"Not Completed"</span>),</span>
+<span id="cb55-3"><a href=""></a>  completed4 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Status =</span> <span class="st">"Completed"</span>)</span>
+<span id="cb55-4"><a href=""></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb55-5"><a href=""></a>  <span class="fu">group_by</span>(CourseCategory, Status) <span class="sc">%&gt;%</span></span>
+<span id="cb55-6"><a href=""></a>  <span class="fu">filter</span>(density <span class="sc">&gt;=</span> <span class="fu">quantile</span>(density, <span class="fl">0.8</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb55-7"><a href=""></a>  dplyr<span class="sc">::</span> <span class="fu">select</span>(CourseCategory, CourseCompletion ,TimeSpentOnCourse , QuizScores, density, Status)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href=""></a><span class="co"># Plot the most dense areas</span></span>
+<span id="cb56-2"><a href=""></a><span class="fu">ggplot</span>(highdensity_combined4, <span class="fu">aes</span>(<span class="at">x =</span> TimeSpentOnCourse , <span class="at">y =</span> QuizScores, <span class="at">color =</span> Status)) <span class="sc">+</span></span>
+<span id="cb56-3"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb56-4"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> CourseCategory, <span class="at">ncol =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb56-5"><a href=""></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Completed"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"Not Completed"</span> <span class="ot">=</span> <span class="st">"red"</span>)) <span class="sc">+</span></span>
+<span id="cb56-6"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"High-Density Areas by Course Category"</span>,</span>
+<span id="cb56-7"><a href=""></a>       <span class="at">x =</span> <span class="st">"TimeSpentOnCourse"</span>,</span>
+<span id="cb56-8"><a href=""></a>       <span class="at">y =</span> <span class="st">"Quizes scores"</span>,</span>
+<span id="cb56-9"><a href=""></a>       <span class="at">color =</span> <span class="st">"Completion Status"</span>) <span class="sc">+</span></span>
+<span id="cb56-10"><a href=""></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
+<span id="cb56-11"><a href=""></a>  <span class="fu">theme</span>(</span>
+<span id="cb56-12"><a href=""></a>    <span class="at">panel.spacing =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"lines"</span>),  <span class="co"># Add space between panels</span></span>
+<span id="cb56-13"><a href=""></a>    <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">size =</span> <span class="dv">1</span>)  <span class="co"># Add border around each panel</span></span>
+<span id="cb56-14"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="methodology---summary-of-codes-and-functions" class="slide level2" data-number="5.26">
+<h2><span class="header-section-number">5.26</span> Methodology - Summary of codes and functions</h2>
+<p>● <strong>read.csv:</strong> Reads a CSV (Comma Separated Values) file into a dataframe in R.</p>
+<p>● <strong>summary:</strong> Generates a summary of a data frame, providing statistics such as mean, median, min, max, and quartiles for each column.</p>
+<p>● <strong>dplyr functions</strong>: A set of tools for data manipulation, allowing easy filtering, summarizing, and transforming data.</p>
+<p>● <strong>mean:</strong> Calculates the arithmetic mean of a numeric vector.</p>
+<p>● <strong>cor.test:</strong> Performs a correlation test between two numeric vectors, providing the correlation coefficient and p-value.</p>
+<p>● <strong>Shapiro.test:</strong> Conducts a Shapiro-Wilk test to check for normality in a numeric vector, providing a p-value.</p>
+<p>● <strong>matrices:</strong> Structured arrays of numbers arranged in rows and columns, commonly used in statistical tests and analyses, such as correlation matrices, to represent and compute relationships between multiple variables simultaneously.</p>
+<p>● <strong>ggplot:</strong> A powerful package for creating complex and customizable data visualizations using a layered approach.</p>
+<p>● <strong>Logistic regression model:</strong> A statistical method used to predict the probability of a binary outcome (such as yes/no) based on one or more predictor variables.</p>
+<p>● <strong>Chi- square test:</strong> A statistical test that assesses the association between categorical variables by comparing observed and expected frequencies.</p>
+<p>● <strong>Odds ratio:</strong> A measure of association between two variables, indicating the odds of an outcome occurring with a particular exposure versus without it.</p>
+</section></section>
+<section>
+<section id="main-results" class="title-slide slide level1 center" data-number="6">
+<h1><span class="header-section-number">6</span> Main results</h1>
+
+</section>
+<section id="correlation-analysis" class="slide level2" data-number="6.1">
+<h2><span class="header-section-number">6.1</span> Correlation analysis</h2>
+<p>Correlation test between course completion and each parameter:</p>
+<p>● P- value lower than 0.05 means highly significant;</p>
+<p>● A correlation coefficient, which measures the strength and direction of the linear relationship between two variables;</p>
+<p>● The closer the correlation is to 1 (positive) or -1 (negative), the stronger the linear relationship. A value closer to 0 indicates a weaker linear relationship.</p>
+</section>
+<section id="correlation-test-between-course-completion-and-each-parameter" class="slide level2" data-number="6.2">
+<h2><span class="header-section-number">6.2</span> Correlation test between course completion and each parameter:</h2>
+<p>The green shades table highlights the correlations between various parameters and <strong>Course Completion</strong> across all course categories.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="table-responsive">
+<table class="table table-striped table-hover table-condensed caption-top" data-quarto-postprocess="true" style="font-size: 17px; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">CourseCategory</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">TimeSpentOnCourse</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">NumberOfVideosWatched</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">NumberOfQuizzesTaken</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">QuizScores</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">CompletionRate</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">DeviceType</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Arts</td>
+<td style="text-align: right; background-color: rgba(139, 193, 139, 255) !important; width: 9em;">0.184</td>
+<td style="text-align: right; background-color: rgba(53, 136, 53, 255) !important; width: 9em;">0.248</td>
+<td style="text-align: right; background-color: rgba(0, 100, 0, 255) !important; width: 9em;">0.335</td>
+<td style="text-align: right; background-color: rgba(4, 103, 4, 255) !important; width: 9em;">0.315</td>
+<td style="text-align: right; background-color: rgba(230, 255, 230, 255) !important; width: 9em;">0.303</td>
+<td style="text-align: right; background-color: rgba(230, 255, 230, 255) !important; width: 9em;">-0.022</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Business</td>
+<td style="text-align: right; background-color: rgba(0, 100, 0, 255) !important; width: 9em;">0.220</td>
+<td style="text-align: right; background-color: rgba(76, 151, 76, 255) !important; width: 9em;">0.241</td>
+<td style="text-align: right; background-color: rgba(183, 223, 183, 255) !important; width: 9em;">0.276</td>
+<td style="text-align: right; background-color: rgba(0, 100, 0, 255) !important; width: 9em;">0.316</td>
+<td style="text-align: right; background-color: rgba(146, 198, 146, 255) !important; width: 9em;">0.328</td>
+<td style="text-align: right; background-color: rgba(230, 255, 230, 255) !important; width: 9em;">-0.022</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Health</td>
+<td style="text-align: right; background-color: rgba(230, 255, 230, 255) !important; width: 9em;">0.160</td>
+<td style="text-align: right; background-color: rgba(132, 189, 132, 255) !important; width: 9em;">0.224</td>
+<td style="text-align: right; background-color: rgba(190, 228, 190, 255) !important; width: 9em;">0.274</td>
+<td style="text-align: right; background-color: rgba(30, 120, 30, 255) !important; width: 9em;">0.311</td>
+<td style="text-align: right; background-color: rgba(83, 156, 83, 255) !important; width: 9em;">0.346</td>
+<td style="text-align: right; background-color: rgba(230, 255, 230, 255) !important; width: 9em;">-0.022</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Programming</td>
+<td style="text-align: right; background-color: rgba(174, 217, 174, 255) !important; width: 9em;">0.175</td>
+<td style="text-align: right; background-color: rgba(230, 255, 230, 255) !important; width: 9em;">0.194</td>
+<td style="text-align: right; background-color: rgba(230, 255, 230, 255) !important; width: 9em;">0.261</td>
+<td style="text-align: right; background-color: rgba(83, 156, 83, 255) !important; width: 9em;">0.302</td>
+<td style="text-align: right; background-color: rgba(0, 100, 0, 255) !important; width: 9em;">0.371</td>
+<td style="text-align: right; background-color: rgba(0, 100, 0, 255) !important; width: 9em;">0.032</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Science</td>
+<td style="text-align: right; background-color: rgba(83, 156, 83, 255) !important; width: 9em;">0.198</td>
+<td style="text-align: right; background-color: rgba(0, 100, 0, 255) !important; width: 9em;">0.265</td>
+<td style="text-align: right; background-color: rgba(157, 206, 157, 255) !important; width: 9em;">0.284</td>
+<td style="text-align: right; background-color: rgba(230, 255, 230, 255) !important; width: 9em;">0.278</td>
+<td style="text-align: right; background-color: rgba(192, 229, 192, 255) !important; width: 9em;">0.314</td>
+<td style="text-align: right; background-color: rgba(55, 137, 55, 255) !important; width: 9em;">0.019</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+</div>
+</div>
+<p>The highest correlation is observed in the <strong>Programming</strong> category between <strong>CompletionRate</strong> and <strong>CourseCompletion</strong> (0.371), indicating a moderate positive relationship. In contrast, the <strong>Arts</strong> category shows a lower correlation between <strong>TimeSpentOnCourse</strong> and <strong>CourseCompletion</strong> (0.184), suggesting a weaker influence.</p>
+<p>Overall, <strong>CompletionRate</strong> consistently shows the strongest correlation with <strong>CourseCompletion</strong> across all categories, with values such as 0.328 in <strong>Business</strong> and 0.346 in <strong>Health</strong>. This suggests that <strong>CompletionRate</strong> is a key factor influencing course completion. For <strong>DeviceType</strong>, the correlations were negligible and not significant across all course categories, with values close to zero.</p>
+<p>In addition to the correlation coefficients, the corresponding <strong>P-values</strong> were also tested, almost all of which are extremely low (&lt; 0.05)<strong>.</strong> These low p-values indicate that the correlations are statistically significant, meaning that the relationships observed between the parameters and Course Completion are unlikely to be due to random chance. However, the p-values for <strong>DeviceType</strong> in the <strong>Business, Health,</strong> and <strong>Programming</strong> categories are above 0.05, meaning they are not statistically significant.</p>
+</section>
+<section id="correlation-matrices-1" class="slide level2" data-number="6.3">
+<h2><span class="header-section-number">6.3</span> Correlation Matrices</h2>
+<p>The correlation matrices across all course categories reveal generally weak relationships between the parameters themselves.</p>
+<p>For instance, in the <strong>Business</strong> category, the correlation between <strong>NumberOfVideosWatched</strong> and <strong>TimeSpentOnCourse</strong> is only 0.6, and in the <strong>Health</strong> category, <strong>NumberOfVideosWatched</strong> and <strong>QuizScores</strong> show a correlation of -0.05. These weak correlations indicate that the parameters, such as <strong>TimeSpentOnCourse</strong>, <strong>NumberOfVideosWatched</strong>, and <strong>QuizScores</strong>, are largely independent of one another within each course category, with minimal influence on one another.</p>
+<p>…..<img data-src="final_project_files/figure-revealjs/unnamed-chunk-53-1.png" width="960"></p>
+</section>
+<section id="shapiro-wilk-normality-test-1" class="slide level2" data-number="6.4">
+<h2><span class="header-section-number">6.4</span> Shapiro-Wilk Normality Test</h2>
+<p><strong>Shapiro-Wilk normality test:</strong> used to examine the normal distribution of each parameter within each course category. The results indicate which statistical tests are appropriate based on the type of distribution.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="table-responsive">
+<table class="table table-striped table-hover table-condensed caption-top" data-quarto-postprocess="true" style="font-size: 14px; width: auto !important; margin-left: auto; margin-right: auto;">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: center; empty-cells: hide; border-bottom: hidden;"></th>
+<th colspan="7" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Parameter
+</div></th>
+</tr>
+<tr class="odd">
+<th style="text-align: center;" data-quarto-table-cell-role="th">Course.category</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Time.spent.on.course</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Number.of.videos.watched</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Number.of.quizzes.taken</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Quiz.scores</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Completion.rate</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Device.Type</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Course.completion</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Arts</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Business</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Health</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Programming</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Science</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+<td style="text-align: center; width: 9em;">P-value &lt; 0.05</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+</div>
+</div>
+<p>All the parameters have p-values lower than 0.05, indicating that <strong>none of them are normally distributed.</strong></p>
+</section>
+<section id="histogram-plotting-1" class="slide level2" data-number="6.5">
+<h2><span class="header-section-number">6.5</span> Histogram Plotting</h2>
+<p>We also plotted histograms to further examine the distribution types:</p>
+
+<img data-src="final_project_files/figure-revealjs/unnamed-chunk-55-1.png" width="960" class="r-stretch"><p>It can be observed that the shapes of the histograms <strong>do not resemble a normal distribution.</strong></p>
+</section>
+<section id="logistic-regression-model-1" class="slide level2 scrollable" data-number="6.6">
+<h2><span class="header-section-number">6.6</span> Logistic regression model</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = CourseCompletion ~ CourseCategory + TimeSpentOnCourse + 
+    NumberOfVideosWatched + NumberOfQuizzesTaken + QuizScores + 
+    CompletionRate, family = binomial, data = data)
+
+Coefficients:
+                           Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)               -7.828608   0.193001 -40.562   &lt;2e-16 ***
+CourseCategoryBusiness    -0.097857   0.094962  -1.030   0.3028    
+CourseCategoryHealth      -0.292411   0.095051  -3.076   0.0021 ** 
+CourseCategoryProgramming -0.028319   0.094885  -0.298   0.7654    
+CourseCategoryScience      0.007406   0.094832   0.078   0.9378    
+TimeSpentOnCourse          2.015422   0.109374  18.427   &lt;2e-16 ***
+NumberOfVideosWatched      2.576269   0.108538  23.736   &lt;2e-16 ***
+NumberOfQuizzesTaken       2.997326   0.106960  28.023   &lt;2e-16 ***
+QuizScores                 3.541323   0.119482  29.639   &lt;2e-16 ***
+CompletionRate             3.612993   0.117776  30.677   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 10290.9  on 7499  degrees of freedom
+Residual deviance:  6797.7  on 7490  degrees of freedom
+AIC: 6817.7
+
+Number of Fisher Scoring iterations: 5</code></pre>
+</div>
+</div>
+<ol type="1">
+<li class="fragment"><p><strong>Significant Predictors</strong>:</p>
+<ul>
+<li class="fragment"><strong>TimeSpentOnCourse</strong>: More time spent on the course increases the likelihood of completion.</li>
+<li class="fragment"><strong>NumberOfVideosWatched</strong>: Watching more videos significantly increases the odds of completing the course.</li>
+<li class="fragment"><strong>NumberOfQuizzesTaken</strong>: Taking more quizzes is strongly associated with a higher completion rate.</li>
+<li class="fragment"><strong>QuizScores</strong>: Higher quiz scores increase the probability of course completion.</li>
+<li class="fragment"><strong>CompletionRate</strong>: A higher completion rate of course activities is associated with an increased likelihood of completing the course.</li>
+</ul></li>
+<li class="fragment"><p><strong>Course Category</strong>:</p>
+<ul>
+<li class="fragment"><p>Being in the <strong>Health</strong> category reduces the odds of course completion compared to the baseline category. This is statistically significant.</p></li>
+<li class="fragment"><p>The <strong>Business</strong>, <strong>Programming</strong>, and <strong>Science</strong> categories do not show statistically significant differences in completion odds compared to the baseline.</p></li>
+</ul>
+<p>Overall, the model indicates that engagement metrics (time spent, videos watched, quizzes taken and scored, and overall completion rate) are crucial factors for predicting course completion.</p></li>
+</ol>
+</section>
+<section id="predicted-probabilities-plot-1" class="slide level2" data-number="6.7">
+<h2><span class="header-section-number">6.7</span> Predicted probabilities plot</h2>
+
+<img data-src="final_project_files/figure-revealjs/unnamed-chunk-57-1.png" width="960" class="r-stretch"><p>The boxplot visualization shows that, while there is some variation in predicted probabilities across different course categories, most categories show similar distributions of predicted probabilities. The <strong>Health</strong> category appears to have a slightly lower median, which matches the statistical findings from the Logistic regression modell.</p>
+</section>
+<section id="forest-plot-1" class="slide level2" data-number="6.8">
+<h2><span class="header-section-number">6.8</span> Forest plot</h2>
+
+<img data-src="final_project_files/figure-revealjs/unnamed-chunk-58-1.png" width="960" class="r-stretch"></section>
+<section id="forest-plot--results-explanation" class="slide level2" data-number="6.9">
+<h2><span class="header-section-number">6.9</span> Forest plot- results explanation</h2>
+<p><strong>TimeSpentOnCourse</strong>, <strong>QuizScores</strong>, <strong>NumberOfVideosWatched</strong>, <strong>NumberOfQuizzesTaken</strong>, and <strong>CompletionRate</strong> all have odds ratios significantly greater than 1, indicating these predictors are strongly associated with higher odds of course completion. - The confidence intervals for these variables do not cross 1, confirming their statistical significance.</p>
+<p><strong>CourseCategory</strong> variables (Science, Programming, Health, Business) have odds ratios close to 1, indicating they do not significantly affect the odds of course completion. Their confidence intervals also cross 1, further supporting their lack of statistical significance.</p>
+<p>The plot visually confirms that engagement-related variables (time spent, quizzes, videos, scores, and completion rate) have a significant positive effect on course completion odds, while course category differences are not statistically significant, except for <strong>Health</strong> which might show a slight decrease but is not a strong predictor.</p>
+</section>
+<section id="chi-test-to-test-the-connection-between-device-type-and-course-completion" class="slide level2" data-number="6.10">
+<h2><span class="header-section-number">6.10</span> Chi Test to test the connection between Device Type and Course Completion</h2>
+
+<img data-src="final_project_files/figure-revealjs/unnamed-chunk-60-1.png" width="960" class="r-stretch"></section>
+<section id="odds-ratio-by-device-type-and-course-completion" class="slide level2" data-number="6.11">
+<h2><span class="header-section-number">6.11</span> Odds Ratio by Device Type and Course Completion</h2>
+<p>Across <strong>all course categories</strong> analyzed, the p-values indicate that <strong>there is no statistically significant relationship between device type (smartphone vs.&nbsp;computer) and course completion rates</strong>. While there are some variations in odds ratios, none of these differences are strong enough to be considered meaningful. Therefore, based on this data, <strong>neither smartphones nor computers can be conclusively deemed better or worse for course completion</strong> across these categories.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept)  DeviceType 
+  0.7517900   0.9141179 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept)  DeviceType 
+  0.8413462   0.9136248 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept)  DeviceType 
+  0.7777778   1.0947666 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept)  DeviceType 
+  0.7694175   1.1384098 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept)  DeviceType 
+  0.7517731   1.0793894 </code></pre>
+</div>
+</div>
+</section>
+<section id="percentage-of-course-completion-by-category-1" class="slide level2" data-number="6.12">
+<h2><span class="header-section-number">6.12</span> Percentage of Course completion by category</h2>
+<p><strong>The bar graph shows the percentage of the student that completed the course by their course category.</strong></p>
+<p>In all course category the completing percentage is bellow 50 %, which is low. the course with the highest percentage is Programming and the lowest is Health.</p>
+
+<img data-src="final_project_files/figure-revealjs/unnamed-chunk-62-1.png" width="960" class="r-stretch"></section>
+<section id="mean-by-variables-1" class="slide level2" data-number="6.13">
+<h2><span class="header-section-number">6.13</span> Mean by variables</h2>
+<p>The mean values of the analyzed variables indicate a high degree of <strong>uniformity</strong> across all course categories. This suggests that, regardless of the subject, <strong>students tend to exhibit similar behaviors in terms of course completion, engagement with quizzes and videos, and time spent on the courses.</strong> The slight variations observed, such as in quiz scores and the number of videos watched, may not be substantial enough to indicate any significant differences in student performance or engagement across different subjects.</p>
+
+<img data-src="final_project_files/figure-revealjs/unnamed-chunk-63-1.png" width="960" class="r-stretch"></section>
+<section id="percentage-of-users-by-device-type-1" class="slide level2" data-number="6.14">
+<h2><span class="header-section-number">6.14</span> Percentage of users by Device Type</h2>
+<p>The use of computers and smartphones is generally <strong>balanced across all course categories</strong>, with <strong>no strong preference for one device type over the other</strong>. In the Business and Health categories, there is a slight tendency for users to favor smartphones, at approximately 51.1%, while in the Arts category, a modest preference for computers is observed at 50.1%. In the Programming and Science categories, the distribution is nearly even, with a minor tendency towards smartphones in Programming and towards computers in Science.</p>
+
+<img data-src="final_project_files/figure-revealjs/unnamed-chunk-64-1.png" width="960" class="r-stretch"><p>Overall, this suggests that <strong>students are almost equally likely to use either device type across different courses</strong>, indicating that <strong>both devices are effective for course engagement</strong>. ## Plotting: calculating density to visualise the results</p>
+</section>
+<section id="plotting-time-spent-on-course-compare-to-completaion-rate" class="slide level2" data-number="6.15">
+<h2><span class="header-section-number">6.15</span> Plotting: Time spent on course compare to Completaion Rate</h2>
+<p>The plot reveals that students who completed the course generally spent more time on it, typically above 0.5, with completion rates close to 1.0. However, there is a noticeable density of students who spent considerable time on the course (around 0.5 or higher) but still did not complete it, especially in the Programming and Health categories. These students, despite their effort, have completion rates clustering below 0.5, indicating that time spent alone is not always sufficient for course completion.</p>
+
+<img data-src="final_project_files/figure-revealjs/unnamed-chunk-65-1.png" width="960" class="r-stretch"></section>
+<section id="plotting-quiz-score-compare-to-completion-rate" class="slide level2" data-number="6.16">
+<h2><span class="header-section-number">6.16</span> Plotting: Quiz Score compare to Completion Rate</h2>
+<p>The plot shows a <strong>distinct separation</strong> between students who completed the course and those who did not. Students who <strong>completed the course</strong> typically have <strong>quiz scores above 0.5</strong> and <strong>completion rates close to 1.0</strong>, while those who <strong>did not complete</strong> tend to have <strong>quiz scores below 0.5</strong> and <strong>completion rates under 0.5</strong>. To successfully complete the course, students generally need a quiz score of at least 0.5 and a high completion rate, indicating a <strong>strong link</strong> between <strong>higher quiz scores and consistent course engagement</strong>.</p>
+
+<img data-src="final_project_files/figure-revealjs/unnamed-chunk-66-1.png" width="960" class="r-stretch"></section>
+<section id="plotting-number-of-quiz-taken-compared-to-quiz-score" class="slide level2" data-number="6.17">
+<h2><span class="header-section-number">6.17</span> Plotting: Number of Quiz taken compared to Quiz Score</h2>
+<p>Students who successfully complete the course generally engage with a higher number of quizzes, often reaching the maximum, and achieve scores above 0.5. However, there is a significant group, particularly in the <strong>Health</strong> and <strong>Programming</strong> categories, who, despite attempting a substantial number of quizzes, fail to complete the course due to lower quiz scores. This indicates that while active participation in quizzes is important, it’s the quality of performance on these quizzes that ultimately determines whether students can successfully complete their courses</p>
+
+<img data-src="final_project_files/figure-revealjs/unnamed-chunk-67-1.png" width="960" class="r-stretch"></section>
+<section id="plotting-time-spent-on-course-compare-to-quiz-score" class="slide level2" data-number="6.18">
+<h2><span class="header-section-number">6.18</span> Plotting: Time spent on course compare to Quiz Score</h2>
+<p>Across all categories, there is a clear trend where <strong>higher quiz scores</strong> are associated with <strong>course completion</strong>, regardless of the time spent on the course. However, in categories like <strong>Health</strong> and <strong>Programming</strong>, spending <strong>more</strong> time <strong>without</strong> achieving <strong>high</strong> quiz scores still often leads to <strong>non-completion</strong>. Overall, <strong>performing well</strong> on <strong>quizzes</strong> is a more consistent predictor of course completion than the amount of time spent on the course.</p>
+
+<img data-src="final_project_files/figure-revealjs/unnamed-chunk-68-1.png" width="960" class="r-stretch"></section></section>
+<section id="conclusions" class="title-slide slide level1 center" data-number="7">
+<h1><span class="header-section-number">7</span> Conclusions</h1>
+<p>The analysis shows that <strong>CompletionRate</strong> is consistently the strongest predictor of <strong>CourseCompletion</strong> across different categories, indicating its significant role in course outcomes. In contrast, <strong>TimeSpentOnCourse</strong> has a weaker relationship with course completion. The p-values for most correlations are very low, confirming their statistical significance, except for <strong>DeviceType</strong>, which shows higher p-values and suggests less impact on course completion. The visualisation of the relationships between the parameters strengthen the claim that Completion Rate is the most reliable predictor as higher quiz score increase the chances for completing the course. Normality tests reveal that all parameters do not follow a perfect normal distribution, which could influence the correlation results. Overall, <strong>CompletionRate</strong> is a key factor in predicting course completion, while <strong>DeviceType</strong> appears less influential.</p>
+<p>In general, the percentage of student passing the courses are below 50%, which raises questions about the success of this style of studying. Our dataset was missing qualititive parameters that would have enhanced our vision on the subject. For example the reason for using a specific device type due to demographic reasons, the overall satisfaction from the professor. In a follow up research it will be interesting to examine those parameteras as well as the preferred and better way for education, frontal/hybrid/online.</p>
+</section>
+
+<section id="bibliography" class="title-slide slide level1 center" data-number="8">
+<h1><span class="header-section-number">8</span> Bibliography</h1>
+<p>1.Montgomery, C. (2020). <em>Person Studying Online</em>. Retrieved from <a href="https://unsplash.com/photos/macbook-pro-displaying-group-of-people-smgTvepind4" class="uri">https://unsplash.com/photos/macbook-pro-displaying-group-of-people-smgTvepind4</a>. Unsplash License.</p>
+<p>2.Romero-Rodríguez, L. M., Ramírez-Montoya, M. S., &amp; Aguaded, I. (2020). Determining factors in MOOCs completion rates: Application test in energy sustainability courses.&nbsp;<em>Sustainability</em>,&nbsp;<em>12</em>(7), 2893.‏ <a href="https://www.mdpi.com/2071-1050/12/7/2893" class="uri">https://www.mdpi.com/2071-1050/12/7/2893</a></p>
+<p>3.Jordan, K. (2015). Massive open online course completion rates revisited: Assessment, length and attrition.&nbsp;<em>International Review of Research in Open and Distributed Learning</em>,&nbsp;<em>16</em>(3), 341-358. <a href="https://www.erudit.org/en/journals/irrodl/2015-v16-n3-irrodl04980/1065985ar/abstract/" class="uri">https://www.erudit.org/en/journals/irrodl/2015-v16-n3-irrodl04980/1065985ar/abstract/</a></p>
+<p>4.Almeda, M. V., Zuech, J., Utz, C., Higgins, G., Reynolds, R., &amp; Baker, R. S. (2018). Comparing the Factors That Predict Completion and Grades Among For-Credit and Open/MOOC Students in Online Learning.&nbsp;<em>Online Learning</em>,&nbsp;<em>22</em>(1), 1-18.‏ <a href="https://eric.ed.gov/?id=EJ1179661" class="uri">https://eric.ed.gov/?id=EJ1179661</a></p>
+<p>5.Bingol, I., Kursun, E., &amp; Kayaduman, H. (2020). Factors for success and course completion in massive open online courses through the lens of participant types.&nbsp;<em>Open Praxis</em>,&nbsp;<em>12</em>(2), 223-239.‏ <a href="https://search.informit.org/doi/abs/10.3316/informit.352759430486694" class="uri">https://search.informit.org/doi/abs/10.3316/informit.352759430486694</a></p>
+<p>6.Pechenkina, E., Laurence, D., Oates, G., Eldridge, D., &amp; Hunter, D. (2017). Using a gamified mobile app to increase student engagement, retention and academic achievement. International Journal of Educational Technology in Higher Education, 14(31). <a href="https://doi.org/10.1186/s41239-017-0069-7" class="uri">https://doi.org/10.1186/s41239-017-0069-7</a></p>
+<p>‏</p>
+</section>
+
+<section id="additional-links" class="title-slide slide level1 center" data-number="9">
+<h1><span class="header-section-number">9</span> Additional links</h1>
+<p><a href="https://www.kaggle.com/datasets/rabieelkharoua/predict-online-course-engagement-dataset">Kaggle- original dataset</a></p>
+<p><a href="https://github.com/Eran3479/AD_EAE">Our github repository</a></p>
+<style>
+/* Ensure the TOC container is scrollable */
+.reveal .toc {
+  position: fixed !important; 
+  top: 0 !important;
+  right: 0 !important;
+  width: 300px !important;
+  height: 100vh !important;
+  overflow-y: auto !important;
+  background-color: #f5e8d4 !important;
+  border-left: 1px solid #ddd !important;
+  padding: 10px !important;
+}
+/* Background color for the entire presentation */
+.reveal {
+  background-color: #f5e8d4; /* Light beige-brown-orange */
+}
+
+/* Background color for all slides */
+.reveal .slides {
+  background-color: #f5e8d4; /* Match the overall background */
+}
+
+/* Code block background color */
+.reveal pre {
+  background-color: #f5e8d4 !important; /* Match the slide background */
+  color: #333333; /* Dark grey text */
+  border-radius: 4px; /* Rounded corners */
+  padding: 8px; /* Padding */
+  border: 1px solid #ddd; /* Light border */
+  overflow-x: auto; /* Horizontal scrolling if needed */
+  box-shadow: 0 0 5px rgba(0,0,0,0.1); /* Optional: subtle shadow */
+}
+
+/* Code within pre tags */
+.reveal code {
+  background-color: inherit !important; /* Match the background of pre */
+  color: #333333; /* Dark grey text */
+}
+
+/* Output blocks background color */
+.reveal .output {
+  background-color: #f5e8d4 !important; /* Match the slide background */
+  color: #333333; /* Dark grey text */
+  border: 1px solid #ddd; /* Light border */
+  border-radius: 4px; /* Rounded corners */
+  padding: 8px; /* Padding */
+}
+
+/* Output text color */
+.reveal .output pre {
+  background-color: #f5e8d4 !important; /* Match the slide background */
+  color: #333333; /* Dark grey text */
+}
+
+/* Text color adjustment for contrast */
+.reveal p, 
+.reveal h1, 
+.reveal h2, 
+.reveal h3 {
+  color: #333333; /* Dark grey for readability */
+}
+
+/* Smaller title fonts with increased specificity */
+.reveal .slides section h1 {
+  font-size: 2em !important;
+}
+
+.reveal .slides section h2 {
+  font-size: 1.2em !important;
+}
+
+.reveal .slides section h3 {
+  font-size: 1.2em !important;
+}
+
+/* Smaller body font */
+.reveal .slides section p {
+  font-size: 0.8em !important;
+}
+
+/* Smaller bullet points */
+.reveal .slides section ul {
+  font-size: 0.8em !important;
+}
+</style>
+<div class="quarto-auto-generated-content">
+<div class="footer footer-default">
+
+</div>
+</div>
+</section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="final_project_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="final_project_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="final_project_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="final_project_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="final_project_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="final_project_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="final_project_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="final_project_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="final_project_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="final_project_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': true,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'slow',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>
